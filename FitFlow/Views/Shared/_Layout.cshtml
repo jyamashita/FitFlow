@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - InfoFlow</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("csses", required: false)
+
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#user-menu">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-menu">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <a href="@Url.Action("Index", "Home", new { Area = string.Empty })" class="navbar-brand">
+                    <span class="glyphicon glyphicon-barcode"></span>
+                    InfoFlow
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="user-menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("ログアウト", "Index", "Home", new { Area = string.Empty })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="sidebar">
+                @Html.Action("Menu", "Common", new { Area = string.Empty })
+            </div>
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

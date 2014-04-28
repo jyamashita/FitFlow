@@ -1,0 +1,28 @@
+﻿@model List<Menu>
+@{
+    List<Menu> menuList = (List<Menu>)Model;
+}
+<div class="collapse navbar-collapse affix" id="main-menu">
+    <ul class="nav nav-pills nav-stacked">
+        @foreach (var item in menuList.Select((v, i) => new { v, i })) {
+            @AsMenuItem(item.v, item.i, menuList)
+        }
+    </ul>
+</div>
+
+@helper AsActive(string url) {
+    var active = (Request.Path == url) ? "active" : string.Empty;
+    @active
+}
+
+@helper AsMenuItem(Menu menu, int idx, List<Menu> menuList) {
+    if (idx == 0 || menu.Category != menuList.ElementAt(idx - 1).Category) {
+        if (!string.IsNullOrWhiteSpace(menu.Category)) {
+            <li class="nav-header">@menu.Category</li>
+        }
+        <li class="@AsActive(menu.URL)"><a href="@menu.URL"><span class="@menu.Icon"></span> @menu.Name</a></li>
+    }
+    else {
+        <li class="@AsActive(menu.URL)"><a href="@menu.URL"><span class="@menu.Icon"></span> @menu.Name</a></li>
+    }    
+}
