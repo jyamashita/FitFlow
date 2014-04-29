@@ -1,0 +1,115 @@
+﻿@model AssetManagement
+@{
+    ViewBag.Title = "ハードウェア資産一覧";
+}
+<h3><span class="glyphicon glyphicon-hdd"></span> ハードウェア資産一覧</h3>
+<div class="well well-sm" >
+    <form class="form-horizontal">
+        <fieldset>
+            <legend><span class="glyphicon glyphicon-search"></span> 検索条件</legend>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SearchDepartmentValue, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.SearchDepartment, new { @class = "form-control input-sm", @readonly = "readonly" })
+                        @Html.HiddenFor(model => model.SearchDepartmentValue)
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-sm search-dialog" data-search-title="組織" data-search-url="/Department/List" data-target="#SearchDepartment" data-clear="#SearchName">
+                                <span class="glyphicon glyphicon-search search-dialog"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm clear-input" data-target="#SearchDepartment">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @Html.LabelFor(model => model.SearchNameValue, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.SearchName, new { @class = "form-control input-sm", @readonly = "readonly" })
+                        @Html.HiddenFor(model => model.SearchNameValue)
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-sm search-pair-dialog" data-search-title="ユーザ" data-search-url="/User/List" data-target1="#SearchDepartment" data-target2="#SearchName">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm clear-input" data-target="#SearchName">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2 col-md-push-6">
+                    <div class="radio-inline">
+                        <label>
+                            @Html.RadioButtonFor(model => model.SearchUsertType, "0", new { @checked = "checked" })
+                            管理者
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            @Html.RadioButtonFor(model => model.SearchUsertType, "1")
+                            使用者
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.SearchUsertType)
+                </div>
+                @Html.LabelFor(model => model.SearchHardwearName, new { @class = "control-label col-md-pull-6 col-md-2" })
+                <div class="col-md-4 col-md-pull-6">
+                    @Html.TextBoxFor(model => model.SearchHardwearName, new { @class = "form-control input-sm" })
+                </div>
+                @Html.ValidationMessageFor(model => model.SearchHardwearName)
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <button type="button" class="btn btn-primary btn-sm">検索</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<h4><span class="glyphicon glyphicon-th-list"></span> 検索結果</h4>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>選択</th>
+            <th>資産No</th>
+            <th>ハードウェア分類</th>
+            <th>資産分類</th>
+            <th>ハードウェア名称</th>
+            <th>管理者</th>
+            <th>設置場所</th>
+            <th>ﾚﾍﾞﾙ</th>
+            <th>申請</th>
+            <th>状態</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,5 +1,4 @@
-﻿//additional functions for data table
-$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
+﻿$.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
     return {
         "iStart": oSettings._iDisplayStart,
         "iEnd": oSettings.fnDisplayEnd(),
@@ -22,12 +21,12 @@ $.extend($.fn.dataTableExt.oPagination, {
                 }
             };
 
-            $(nPaging).addClass('pagination').append(
-                '<ul>' +
-                    '<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
-                    '<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
-                '</ul>'
-            );
+            $(nPaging).append(
+				'<ul class="pagination">' +
+					'<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
+					'<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
+				'</ul>'
+			);
             var els = $('a', nPaging);
             $(els[0]).bind('click.DT', { action: "previous" }, fnClickHandler);
             $(els[1]).bind('click.DT', { action: "next" }, fnClickHandler);
@@ -62,12 +61,12 @@ $.extend($.fn.dataTableExt.oPagination, {
                 for (j = iStart ; j <= iEnd ; j++) {
                     sClass = (j == oPaging.iPage + 1) ? 'class="active"' : '';
                     $('<li ' + sClass + '><a href="#">' + j + '</a></li>')
-                        .insertBefore($('li:last', an[i])[0])
-                        .bind('click', function (e) {
-                            e.preventDefault();
-                            oSettings._iDisplayStart = (parseInt($('a', this).text(), 10) - 1) * oPaging.iLength;
-                            fnDraw(oSettings);
-                        });
+						.insertBefore($('li:last', an[i])[0])
+						.bind('click', function (e) {
+						    e.preventDefault();
+						    oSettings._iDisplayStart = (parseInt($('a', this).text(), 10) - 1) * oPaging.iLength;
+						    fnDraw(oSettings);
+						});
                 }
 
                 // add / remove disabled classes from the static elements

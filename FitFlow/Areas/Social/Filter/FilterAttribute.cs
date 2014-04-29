@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FitFlow.Areas.Social.Filter
 {
-    public class FilterAttribute : ActionFilterAttribute
+    public class FitFlowFilterAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

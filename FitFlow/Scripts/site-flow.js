@@ -7,6 +7,7 @@ var methods = {
         draw: function () {
             /* canvas要素のノードオブジェクト */
             var canvas = document.getElementById('canvassample');
+            /* canvas要素の存在チェックとCanvas未対応ブラウザの対処 */
             if (!canvas || !canvas.getContext) {
                 return false;
             }
@@ -15,7 +16,6 @@ var methods = {
             /* 四角を描く */
             ctx.beginPath();
             ctx.moveTo(20, 20);
-            /* canvas要素の存在チェックとCanvas未対応ブラウザの対処 */
             ctx.lineTo(120, 20);
             ctx.lineTo(120, 120);
             ctx.lineTo(20, 120);

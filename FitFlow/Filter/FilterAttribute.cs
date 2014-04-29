@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FitFlow.Filter
 {
-    public class FilterAttribute : ActionFilterAttribute
+    public class vd : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
