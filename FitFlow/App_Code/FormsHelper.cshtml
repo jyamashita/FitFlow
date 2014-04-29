@@ -1,0 +1,35 @@
+﻿@using ActivitiClient.Models.Bpmn;
+
+@helper EncodeForm(FormProperty prop)
+{
+    switch (prop.Type) {
+        case "string":
+            @FormsHelper.EncodeTextBox(prop);
+            break;
+        case "long":
+            @FormsHelper.EncodeTextBox(prop);
+            break;
+        case "boolean":
+            @FormsHelper.EncodeTextBox(prop);
+            break;
+        case "date":
+            @FormsHelper.EncodeTextBox(prop);
+            break;
+        case "enum":
+            @FormsHelper.EncodeTextBox(prop);
+            break;
+        case "user":
+            @FormsHelper.EncodeTextBox(prop);
+            break;
+        default:
+            break;
+    }
+}
+
+@helper EncodeTextBox(FormProperty prop)
+{
+    <label for="exampleInputEmail1" class="col-md-2 control-label">@(prop.Name)(@prop.Id)</label>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="@prop.Id" name="@prop.Id" />
+    </div>
+}

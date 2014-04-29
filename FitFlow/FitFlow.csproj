@@ -158,7 +158,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Flow\Controllers\FormsController.cs" />
+    <Compile Include="Areas\Flow\Controllers\ProcessDefinitionsController.cs" />
     <Compile Include="Areas\Flow\Controllers\ProcessModelController.cs" />
+    <Compile Include="Areas\Flow\Controllers\TasksController.cs" />
     <Compile Include="Areas\Flow\FlowAreaRegistration.cs" />
     <Compile Include="Areas\Security\Controllers\AssetManagementController.cs" />
     <Compile Include="Areas\Security\Controllers\SecurityAssessmentController.cs" />
@@ -188,6 +191,11 @@
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,10 +221,17 @@
     <Content Include="Areas\Flow\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Flow\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Flow\Views\ProcessModel\Index.cshtml" />
+    <Content Include="Areas\Flow\Views\ProcessDefinitions\Index.cshtml" />
+    <Content Include="Areas\Flow\Views\Forms\Start.cshtml" />
+    <Content Include="App_Code\FormsHelper.cshtml" />
     <None Include="Areas\Security\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Security\Views\AssetManagement\Index.cshtml" />
     <Content Include="Areas\Security\Views\SecurityAssessment\Index.cshtml" />
     <Content Include="Areas\Social\Views\web.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -265,6 +280,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Flow\Models\" />
+    <Folder Include="Areas\Flow\Views\Tasks\" />
     <Folder Include="Areas\Social\Models\" />
     <Folder Include="Areas\Social\Views\Shared\" />
     <Folder Include="Areas\Social\Views\User\" />
@@ -282,6 +298,12 @@
     <EmbeddedResource Include="Migrations\201403261157323_Init.resx">
       <DependentUpon>201403261157323_Init.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ActivitiClient\ActivitiClient\ActivitiClient.csproj">
+      <Project>{e6f85110-a6bc-408d-b4fc-f2832476691d}</Project>
+      <Name>ActivitiClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

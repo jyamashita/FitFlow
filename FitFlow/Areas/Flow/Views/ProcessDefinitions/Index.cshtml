@@ -1,0 +1,28 @@
+﻿@model List<ActivitiClient.Models.ProcessDefinition>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h4><span class="glyphicon glyphicon-th-list"></span> 検索結果</h4>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>プロセス定義ID</th>
+            <th>プロセスキー</th>
+            <th>カテゴリ</th>
+            <th>プロセス名</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Key</td>
+            <td>@item.Category</td>
+            <td>@item.Name</td>
+        </tr>
+        }
+    </tbody>
+</table>
