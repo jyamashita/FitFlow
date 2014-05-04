@@ -1,4 +1,5 @@
 ﻿using ActivitiClient.RestClients;
+using FitFlow.Controllers;
 using FitFlow.Properties;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace FitFlow.Areas.Flow.Controllers
 {
-    public class ProcessDefinitionsController : Controller
+    public class ProcessDefinitionsController : BaseController
     {
         //
         // GET: /Flow/ProcessDefinitions/

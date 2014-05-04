@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FitFlow.Models.FitFlow;
 
 namespace FitFlow.Areas.Social.Controllers
 {
@@ -13,25 +14,25 @@ namespace FitFlow.Areas.Social.Controllers
     {
         //
         // GET: /Social/Department/
-        public ActionResult Find(string search)
+        public ActionResult Find(string id)
         {
-            using (var dbc = new FitFlowContext()) {
+            using (var dbc = new FitFlowEntities()) {
                 var json = new {
-                    data = dbc.Users.Select(u => new { Id = u.Id, Alias = u.Alias, Name = u.Name }).ToArray(),
-                    head = new [] { "ID", "Alias", "Name" }
+                    data = dbc.GroupView.Where(d => d.Id == id).ToArray()
+                        .Select(d => new[] { d.Id, d.Name }).Single(),
+                    head = new[] { "DepartmentId", "組織名" }
                 };
                 return Json(json, JsonRequestBehavior.AllowGet);
             }
-
         }
 
         //
         // GET: /Social/Department/
         public ActionResult List(string search)
         {
-            using (var dbc = new FitFlowContext()) {
+            using (var dbc = new FitFlowEntities()) {
                 var json = new {
-                    data = dbc.Departments.Where(d => d.Name.Contains(search)).ToArray()
+                    data = dbc.GroupView.Where(d => d.Name.Contains(search)).ToArray()
                         .Select(d => new[] { d.Id.ToString(), d.Name }),
                     head = new[] { "DepartmentId", "組織名" }
                 };

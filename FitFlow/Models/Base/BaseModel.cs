@@ -14,9 +14,9 @@ namespace FitFlow.Models.Base
         [Column(Order=100)]
         [Required]
         [ForeignKey("CreateUser")]
-        public int CreateUserId { get; set; }
+        public string CreateUserId { get; set; }
 
-        public User CreateUser { get; set; }
+        public virtual User CreateUser { get; set; }
 
         [Column(Order = 101)]
         [Required]
@@ -24,10 +24,10 @@ namespace FitFlow.Models.Base
 
         [Column(Order = 102)]
         [ForeignKey("UpdateUser")]
-        public int? UpdateUserId { get; set; }
+        public string UpdateUserId { get; set; }
 
         [Column(Order = 103)]
-        public User UpdateUser { get; set; }
+        public virtual User UpdateUser { get; set; }
 
         [Column(Order = 104)]
         public DateTime? UpdateDateTime { get; set; }

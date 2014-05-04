@@ -12,32 +12,30 @@ namespace FitFlow.Models
 {
     public class User : BaseLogicalDeleteModel
     {
+        /// <summary>
+        /// ポータル、Activiti共通ID
+        /// </summary>
         [Key, Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
+        /// <summary>
+        /// ハッシュ化パスワード(ポータル用)
+        /// </summary>
         [Column(Order = 2)]
-        [Required]
-        public string Name { get; set; }
-
-        [Column(Order = 3)]
-        [Required]
-        public string Alias { get; set; }
-
-        [Column(Order = 4)]
-        public string Domain { get; set; }
+        public string Password { get; set; }
 
         [Column(Order = 100)]
         [Required]
-        public int CreateUserId { get; set; }
+        public string CreateUserId { get; set; }
 
         [Column(Order = 101)]
         [Required]
         public DateTime CreateDateTime { get; set; }
 
         [Column(Order = 102)]
-        public int? UpdateUserId { get; set; }
+        public string UpdateUserId { get; set; }
 
         [Column(Order = 104)]
         public DateTime? UpdateDateTime { get; set; }

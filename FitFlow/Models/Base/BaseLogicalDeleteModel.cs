@@ -13,6 +13,7 @@ namespace FitFlow.Models.Base
     {
         [Column(Order = 105)]
         [Required]
+        [Range(0, 1)]
         public int DeleteFlg { get; set; }
     }
 }

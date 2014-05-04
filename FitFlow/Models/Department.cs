@@ -15,20 +15,13 @@ namespace FitFlow.Models
         [Key, Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Column(Order = 2)]
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
 
         [Column(Order = 3)]
-        public string Name { get; set; }
-
         [Required]
-        [Column(Order = 4, TypeName = "Date")]
-        public DateTime ApplyFrom { get; set; }
-
-        [Required]
-        [Column(Order = 5, TypeName = "Date")]
-        public DateTime ApplyTo { get; set; }
+        public int Level { get; set; }
     }
 }

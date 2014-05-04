@@ -27,7 +27,14 @@
             </div>
             <div class="collapse navbar-collapse" id="user-menu">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("ログアウト", "Index", "Home", new { Area = string.Empty })</li>
+                    @{ var loginuser = Session["LoginUser"] as User; }
+                    <li><a></a></li>
+                    <li>
+                        @Html.ActionLink("ログアウト", "Logout", "Account", new { Area = string.Empty }, null)
+                        @*using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { Area = string.Empty })) {
+                            <input type="submit" value="ログアウト" />
+                        }*@
+                    </li>
                 </ul>
             </div>
         </div>

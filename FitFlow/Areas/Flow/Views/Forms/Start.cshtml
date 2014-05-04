@@ -5,13 +5,15 @@
 
 <h2>@Model.Name</h2>
 
-<form role="form" class="form-horizontal">
-
+<form role="form" class="form-horizontal" action="/Tasks/Action" method="post" >
+    @Html.Hidden("processDefinitionId", string.Format("{0}:{1}:{2}", Request.Params["key"], Request.Params["version"], Request.Params["processId"]))
+    @Html.Hidden("taskDefitionId", Model.StartEvent[0].Id)
+    
     @foreach (var item in Model.StartEvent[0].FormProperty) {
         <div class="form-group">
             @FormsHelper.EncodeForm(item)
         </div>
     }
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default">申請</button>
 </form>
 

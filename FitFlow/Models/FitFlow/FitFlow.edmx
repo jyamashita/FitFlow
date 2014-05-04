@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FitFlowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Belongs">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="DepartmentId" />
+            <PropertyRef Name="StartDate" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DepartmentId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="Duty" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ParentId" Type="nvarchar(max)" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="Icon" Type="nvarchar(max)" />
+          <Property Name="Order" Type="int" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="CreateUserId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar(max)" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成中に見つかったエラー:
+警告 6002: テーブル/ビュー 'FitFlow.dbo.GroupLeaderView' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
+        <EntityType Name="GroupLeaderView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ParentId" Type="nvarchar(max)" />
+          <Property Name="ParentName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ParentUserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <!--生成中に見つかったエラー:
+警告 6002: テーブル/ビュー 'FitFlow.dbo.GroupView' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
+        <EntityType Name="GroupView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="CreateUserId" />
+            <PropertyRef Name="CreateDateTime" />
+            <PropertyRef Name="DeleteFlg" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ParentId" Type="nvarchar(max)" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成中に見つかったエラー:
+警告 6002: テーブル/ビュー 'FitFlow.dbo.UserView' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
+        <EntityType Name="UserView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CreateUserId" />
+            <PropertyRef Name="CreateDateTime" />
+            <PropertyRef Name="DeleteFlg" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="512" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="ActivitiPassword" Type="nvarchar" MaxLength="255" />
+          <Property Name="PictureId" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreateUserId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar(max)" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Belongs_dbo_Departments_DepartmentId">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Belongs" Type="Self.Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Belongs_dbo_Users_CreateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Belongs" Type="Self.Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Belongs_dbo_Users_UpdateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Belongs" Type="Self.Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Belongs_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Belongs" Type="Self.Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Departments_dbo_Users_CreateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Departments_dbo_Users_UpdateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Users_CreateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Users_UpdateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FitFlowModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Belongs" EntityType="Self.Belongs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupLeaderView" EntityType="Self.GroupLeaderView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GroupLeaderView].[Id] AS [Id], 
+    [GroupLeaderView].[Name] AS [Name], 
+    [GroupLeaderView].[UserId] AS [UserId], 
+    [GroupLeaderView].[ParentId] AS [ParentId], 
+    [GroupLeaderView].[ParentName] AS [ParentName], 
+    [GroupLeaderView].[ParentUserId] AS [ParentUserId]
+    FROM [dbo].[GroupLeaderView] AS [GroupLeaderView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="GroupView" EntityType="Self.GroupView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [GroupView].[Id] AS [Id], 
+    [GroupView].[ParentId] AS [ParentId], 
+    [GroupView].[Level] AS [Level], 
+    [GroupView].[Name] AS [Name], 
+    [GroupView].[CreateUserId] AS [CreateUserId], 
+    [GroupView].[CreateDateTime] AS [CreateDateTime], 
+    [GroupView].[UpdateUserId] AS [UpdateUserId], 
+    [GroupView].[UpdateDateTime] AS [UpdateDateTime], 
+    [GroupView].[DeleteFlg] AS [DeleteFlg]
+    FROM [dbo].[GroupView] AS [GroupView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserView" EntityType="Self.UserView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserView].[Id] AS [Id], 
+    [UserView].[Name] AS [Name], 
+    [UserView].[Email] AS [Email], 
+    [UserView].[Password] AS [Password], 
+    [UserView].[ActivitiPassword] AS [ActivitiPassword], 
+    [UserView].[PictureId] AS [PictureId], 
+    [UserView].[CreateUserId] AS [CreateUserId], 
+    [UserView].[CreateDateTime] AS [CreateDateTime], 
+    [UserView].[UpdateUserId] AS [UpdateUserId], 
+    [UserView].[UpdateDateTime] AS [UpdateDateTime], 
+    [UserView].[DeleteFlg] AS [DeleteFlg]
+    FROM [dbo].[UserView] AS [UserView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Departments_DepartmentId" Association="Self.FK_dbo_Belongs_dbo_Departments_DepartmentId">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Users_CreateUserId" Association="Self.FK_dbo_Belongs_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Users_UpdateUserId" Association="Self.FK_dbo_Belongs_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Users_UserId" Association="Self.FK_dbo_Belongs_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Departments_dbo_Users_CreateUserId" Association="Self.FK_dbo_Departments_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Departments_dbo_Users_UpdateUserId" Association="Self.FK_dbo_Departments_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Users_CreateUserId" Association="Self.FK_dbo_Menus_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Users_UpdateUserId" Association="Self.FK_dbo_Menus_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FitFlowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="CreateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Departments_dbo_Users_CreateUserId" FromRole="Departments" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_dbo_Departments_dbo_Users_UpdateUserId" FromRole="Departments" ToRole="Users" />
+          <NavigationProperty Name="Belongs" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Departments_DepartmentId" FromRole="Departments" ToRole="Belongs" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="CreateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Menus_dbo_Users_CreateUserId" FromRole="Menus" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_dbo_Menus_dbo_Users_UpdateUserId" FromRole="Menus" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_dbo_Departments_dbo_Users_CreateUserId" FromRole="Users" ToRole="Departments" />
+          <NavigationProperty Name="Departments1" Relationship="Self.FK_dbo_Departments_dbo_Users_UpdateUserId" FromRole="Users" ToRole="Departments" />
+          <NavigationProperty Name="Menus" Relationship="Self.FK_dbo_Menus_dbo_Users_CreateUserId" FromRole="Users" ToRole="Menus" />
+          <NavigationProperty Name="Menus1" Relationship="Self.FK_dbo_Menus_dbo_Users_UpdateUserId" FromRole="Users" ToRole="Menus" />
+          <NavigationProperty Name="Belongs" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Users_CreateUserId" FromRole="Users" ToRole="Belongs" />
+          <NavigationProperty Name="Belongs1" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Users_UpdateUserId" FromRole="Users" ToRole="Belongs" />
+          <NavigationProperty Name="Belongs2" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Users_UserId" FromRole="Users" ToRole="Belongs" />
+        </EntityType>
+        <EntityType Name="GroupLeaderView">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ParentUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GroupView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="CreateUserId" />
+            <PropertyRef Name="CreateDateTime" />
+            <PropertyRef Name="DeleteFlg" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CreateUserId" />
+            <PropertyRef Name="CreateDateTime" />
+            <PropertyRef Name="DeleteFlg" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActivitiPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PictureId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Departments_dbo_Users_CreateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Departments_dbo_Users_UpdateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Users_CreateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Users_UpdateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FitFlowEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="Menus" EntityType="Self.Menus" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="GroupLeaderView" EntityType="Self.GroupLeaderView" />
+          <EntitySet Name="GroupView" EntityType="Self.GroupView" />
+          <EntitySet Name="UserView" EntityType="Self.UserView" />
+          <AssociationSet Name="FK_dbo_Departments_dbo_Users_CreateUserId" Association="Self.FK_dbo_Departments_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Departments_dbo_Users_UpdateUserId" Association="Self.FK_dbo_Departments_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Users_CreateUserId" Association="Self.FK_dbo_Menus_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Users_UpdateUserId" Association="Self.FK_dbo_Menus_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <EntitySet Name="Belongs" EntityType="FitFlowModel.Belongs" />
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Departments_DepartmentId" Association="FitFlowModel.FK_dbo_Belongs_dbo_Departments_DepartmentId">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Users_CreateUserId" Association="FitFlowModel.FK_dbo_Belongs_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Users_UpdateUserId" Association="FitFlowModel.FK_dbo_Belongs_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Belongs_dbo_Users_UserId" Association="FitFlowModel.FK_dbo_Belongs_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Belongs" EntitySet="Belongs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Belongs">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="DepartmentId" />
+            <PropertyRef Name="StartDate" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="FitFlowModel.Role" Nullable="false" />
+          <Property Name="Duty" Type="FitFlowModel.Duty" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Departments_DepartmentId" FromRole="Belongs" ToRole="Departments" />
+          <NavigationProperty Name="Users" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Users_CreateUserId" FromRole="Belongs" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Users_UpdateUserId" FromRole="Belongs" ToRole="Users" />
+          <NavigationProperty Name="Users2" Relationship="FitFlowModel.FK_dbo_Belongs_dbo_Users_UserId" FromRole="Belongs" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_dbo_Belongs_dbo_Departments_DepartmentId">
+          <End Type="FitFlowModel.Departments" Role="Departments" Multiplicity="1" />
+          <End Type="FitFlowModel.Belongs" Role="Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Belongs_dbo_Users_CreateUserId">
+          <End Type="FitFlowModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="FitFlowModel.Belongs" Role="Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Belongs_dbo_Users_UpdateUserId">
+          <End Type="FitFlowModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="FitFlowModel.Belongs" Role="Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Belongs_dbo_Users_UserId">
+          <End Type="FitFlowModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="FitFlowModel.Belongs" Role="Belongs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Belongs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="Role" a:ExternalTypeName="Constants.Role" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="Duty" a:ExternalTypeName="Constants.Duty" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="DeleteFlg" a:ExternalTypeName="Constants.DeleteFlg" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" IsFlags="true" />
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FitFlowModelStoreContainer" CdmEntityContainer="FitFlowEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="FitFlowModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="FitFlowModel.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="FitFlowModel.Menus">
+              <MappingFragment StoreEntitySet="Menus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FitFlowModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupLeaderView">
+            <EntityTypeMapping TypeName="FitFlowModel.GroupLeaderView">
+              <MappingFragment StoreEntitySet="GroupLeaderView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentUserId" ColumnName="ParentUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupView">
+            <EntityTypeMapping TypeName="FitFlowModel.GroupView">
+              <MappingFragment StoreEntitySet="GroupView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserView">
+            <EntityTypeMapping TypeName="FitFlowModel.UserView">
+              <MappingFragment StoreEntitySet="UserView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ActivitiPassword" ColumnName="ActivitiPassword" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Belongs">
+            <EntityTypeMapping TypeName="FitFlowModel.Belongs">
+              <MappingFragment StoreEntitySet="Belongs">
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Duty" ColumnName="Duty" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

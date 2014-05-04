@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FitFlow.Models.FitFlow;
 
 namespace FitFlow.Areas.Social.Controllers
 {
@@ -15,41 +16,31 @@ namespace FitFlow.Areas.Social.Controllers
         // GET: /Social/User/
         public ActionResult Find(string search)
         {
-            using (var dbc = new FitFlowContext()) {
+            using (var dbc = new FitFlowEntities()) {
                 var json = new {
-                    data = dbc.Users.Select(u => new { Id = u.Id, Alias = u.Alias, Name = u.Name }).ToArray(),
-                    head = new [] { "ID", "Alias", "Name" }
+                    data = dbc.UserView.Select(u => new { UserId = u.Id, Name = u.Name }).ToArray(),
+                    head = new [] { "UserId", "Name" }
                 };
                 return Json(json, JsonRequestBehavior.AllowGet);
             }
-
         }
 
         //
         // GET: /Social/User/
         public ActionResult List(string search)
         {
-            using (var dbc = new FitFlowContext()) {
+            using (var dbc = new FitFlowEntities()) {
                 var json = new {
-                    data = dbc.Users.Join(dbc.Belongs, u => u.Id, b => b.UserId, (u, b) => new { u.Id, u.Name, DepartmentId = b.DepartmentId, DepartmentName = b.Department.Name })
-                        .Where(u => u.Name.Contains(search))
+                    data =
+                        (from usr in dbc.UserView
+                         join blg in dbc.Belongs on usr.Id equals blg.UserId
+                         join grp in dbc.GroupView on blg.DepartmentId equals grp.Id
+                         where usr.Name.Contains(search)
+                         select new { usr.Id, usr.Name, DepartmentId = grp.Id, DepartmentName = grp.Name })
                         .ToArray()
-                        .Select(u => new[] { u.DepartmentId.ToString(), u.DepartmentName, u.Id.ToString(), u.Name }),
+                        .Select(u => new[] { u.DepartmentId, u.DepartmentName, u.Id, u.Name }),
                     head = new[] { "DepartmentId", "組織名", "UserId", "氏名" },
                 };
-                //var json = new {
-                //    data = dbc.Users.Join(dbc.Belongs, u => u.Id, b => b.UserId, (u, b) => new { u.Id, u.Name, DepartmentId = b.DepartmentId, DepartmentName = b.Department.Name })
-                //        .Where(u => u.Name.Contains(search))
-                //        .ToArray()
-                //        .Select(u => new {
-                //            DepartmentId = u.DepartmentId.ToString(),
-                //            組織名 = u.DepartmentName,
-                //            UserId = u.Id.ToString(),
-                //            氏名 = u.Name,
-                //            string.Empty
-                //        }),
-                //    head = new[] { "DepartmentId", "組織名", "UserId", "氏名", string.Empty }
-                //};
                 return Json(json, JsonRequestBehavior.AllowGet);
             }
         }

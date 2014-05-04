@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3b65674f99c34fff86682ba2f0105246" Name="Diagram1">
+        <EntityTypeShape EntityType="ActivitiModel.ACT_GE_BYTEARRAY" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_GE_PROPERTY" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_ACTINST" Width="1.5" PointX="12.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_ATTACHMENT" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_COMMENT" Width="1.5" PointX="7.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_DETAIL" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_IDENTITYLINK" Width="1.5" PointX="11.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_PROCINST" Width="1.5" PointX="13.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_TASKINST" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_HI_VARINST" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_ID_GROUP" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_ID_INFO" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_ID_USER" Width="1.5" PointX="13" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RE_DEPLOYMENT" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RE_MODEL" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RE_PROCDEF" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RU_EVENT_SUBSCR" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RU_EXECUTION" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RU_IDENTITYLINK" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RU_JOB" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RU_TASK" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActivitiModel.ACT_RU_VARIABLE" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_BYTEARR_DEPL" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_JOB_EXCEPTION" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_MODEL_SOURCE" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_MODEL_SOURCE_EXTRA" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_VAR_BYTEARRAY" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_MODEL_DEPLOYMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_ATHRZ_PROCEDEF" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_EXE_PROCDEF" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_TASK_PROCDEF" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_EVENT_EXEC" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_EXE_PARENT" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_EXE_SUPER" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_IDL_PROCINST" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_TASK_EXE" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_TASK_PROCINST" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_VAR_EXE" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_VAR_PROCINST" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_FK_TSKASS_TASK" ManuallyRouted="false" />
+        <AssociationConnector Association="ActivitiModel.ACT_ID_MEMBERSHIP" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

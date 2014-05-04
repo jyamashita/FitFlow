@@ -17,8 +17,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,6 +173,11 @@
     <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
     <Compile Include="Areas\Social\Controllers\UserController.cs" />
     <Compile Include="Areas\Social\SocialAreaRegistration.cs" />
+    <Compile Include="Constants\DeleteFlg.cs" />
+    <Compile Include="Constants\Duty.cs" />
+    <Compile Include="Constants\Role.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\IQueryableExtensions.cs" />
@@ -178,17 +185,139 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201403261157323_Init.cs" />
-    <Compile Include="Migrations\201403261157323_Init.Designer.cs">
-      <DependentUpon>201403261157323_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201405040149558_Init.cs" />
+    <Compile Include="Migrations\201405040149558_Init.Designer.cs">
+      <DependentUpon>201405040149558_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Activiti\Activiti.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Activiti.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\Activiti.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\Activiti.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Activiti.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_GE_BYTEARRAY.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_GE_PROPERTY.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_ACTINST.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_ATTACHMENT.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_COMMENT.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_DETAIL.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_IDENTITYLINK.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_PROCINST.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_TASKINST.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_HI_VARINST.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_ID_GROUP.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_ID_INFO.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_ID_USER.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RE_DEPLOYMENT.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RE_MODEL.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RE_PROCDEF.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RU_EVENT_SUBSCR.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RU_EXECUTION.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RU_IDENTITYLINK.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RU_JOB.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RU_TASK.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activiti\ACT_RU_VARIABLE.cs">
+      <DependentUpon>Activiti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Base\BaseStartEndModel.cs" />
     <Compile Include="Models\Base\BaseLogicalDeleteModel.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Belong.cs" />
     <Compile Include="Models\FitFlowContext.cs" />
+    <Compile Include="Models\FitFlow\Belongs.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\C__MigrationHistory.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\Departments.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\FitFlow.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitFlow.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\FitFlow.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\FitFlow.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitFlow.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\GroupLeaderView.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\GroupView.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\Menus.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\Users.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\UserView.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Service\LoginModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -204,6 +333,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootswatch.min.css" />
+    <Content Include="Content\signin.css" />
     <Content Include="Content\site-flow.css" />
     <Content Include="Content\site.css" />
     <Content Include="favicon.ico" />
@@ -228,6 +358,40 @@
     <Content Include="Areas\Security\Views\AssetManagement\Index.cshtml" />
     <Content Include="Areas\Security\Views\SecurityAssessment\Index.cshtml" />
     <Content Include="Areas\Social\Views\web.config" />
+    <EntityDeploy Include="Models\Activiti\Activiti.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Activiti.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Activiti\Activiti.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Activiti.edmx</DependentUpon>
+      <LastGenOutput>Activiti.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Activiti\Activiti.edmx.diagram">
+      <DependentUpon>Activiti.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Activiti\Activiti.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Activiti.edmx</DependentUpon>
+      <LastGenOutput>Activiti.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\FitFlow\FitFlow.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FitFlow.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FitFlow\FitFlow.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FitFlow.edmx</DependentUpon>
+      <LastGenOutput>FitFlow.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FitFlow\FitFlow.edmx.diagram">
+      <DependentUpon>FitFlow.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FitFlow\FitFlow.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FitFlow.edmx</DependentUpon>
+      <LastGenOutput>FitFlow.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -250,7 +414,9 @@
     <Content Include="Scripts\site-flow.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -265,15 +431,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Common\Menu.cshtml" />
   </ItemGroup>
@@ -284,7 +442,7 @@
     <Folder Include="Areas\Social\Models\" />
     <Folder Include="Areas\Social\Views\Shared\" />
     <Folder Include="Areas\Social\Views\User\" />
-    <Folder Include="Models\Service\" />
+    <Folder Include="Extensions\Table\" />
     <Folder Include="Models\Views\" />
   </ItemGroup>
   <ItemGroup>
@@ -295,15 +453,18 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403261157323_Init.resx">
-      <DependentUpon>201403261157323_Init.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\ActivitiClient\ActivitiClient\ActivitiClient.csproj">
       <Project>{e6f85110-a6bc-408d-b4fc-f2832476691d}</Project>
       <Name>ActivitiClient</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405040149558_Init.resx">
+      <DependentUpon>201405040149558_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

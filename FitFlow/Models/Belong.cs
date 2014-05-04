@@ -1,35 +1,40 @@
-﻿using FitFlow.Models.Base;
+﻿using FitFlow.Constants;
+using FitFlow.Models.Base;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitFlow.Models
 {
-    public class Belong : BaseModel
+    public class Belong : BaseStartEndModel
     {
         [Key, Column(Order = 1)]
         [Required]
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [Key, Column(Order = 2)]
         [ForeignKey("Department")]
-        public int DepartmentId { get; set; }
+        public string DepartmentId { get; set; }
 
-        public Department Department { get; set; }
+        public virtual Department Department { get; set; }
 
-        [Key, Column(Order = 3, TypeName = "Date")]
+        /// <summary>
+        /// '1'：リーダ、'0':メンバー
+        /// </summary>
+        [Column(Order = 3)]
         [Required]
-        public DateTime ApplyFrom { get; set; }
+        [Range(0, 1)]
+        public Role Role { get; set; }
 
+        /// <summary>
+        /// '1'：本務、'0'：兼務
+        /// </summary>
         [Required]
-        [Column(Order = 4, TypeName = "Date")]
-        public DateTime ApplyTo { get; set; }
-
-        [Required]
-        [Column(Order = 5)]
-        public int DutyType { get; set; }
+        [Column(Order = 4)]
+        [Range(0,1)]
+        public Duty Duty { get; set; }
     }
 }

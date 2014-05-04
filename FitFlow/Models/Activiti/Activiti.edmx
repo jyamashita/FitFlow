@@ -1,0 +1,1836 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ActivitiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACT_GE_BYTEARRAY">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEPLOYMENT_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="BYTES_" Type="varbinary(max)" />
+          <Property Name="GENERATED_" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="ACT_GE_PROPERTY">
+          <Key>
+            <PropertyRef Name="NAME_" />
+          </Key>
+          <Property Name="NAME_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="VALUE_" Type="nvarchar" MaxLength="300" />
+          <Property Name="REV_" Type="int" />
+        </EntityType>
+        <EntityType Name="ACT_HI_ACTINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ACT_ID_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="CALL_PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="ACT_NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="ACT_TYPE_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ASSIGNEE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="START_TIME_" Type="datetime" Nullable="false" />
+          <Property Name="END_TIME_" Type="datetime" />
+          <Property Name="DURATION_" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_HI_ATTACHMENT">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="USER_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="URL_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CONTENT_ID_" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="ACT_HI_COMMENT">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TIME_" Type="datetime" Nullable="false" />
+          <Property Name="USER_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="ACTION_" Type="nvarchar" MaxLength="255" />
+          <Property Name="MESSAGE_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FULL_MSG_" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ACT_HI_DETAIL">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="ACT_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VAR_TYPE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="TIME_" Type="datetime" Nullable="false" />
+          <Property Name="BYTEARRAY_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="DOUBLE_" Type="float" />
+          <Property Name="LONG_" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="TEXT_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TEXT2_" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="ACT_HI_IDENTITYLINK">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="GROUP_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="USER_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="ACT_HI_PROCINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="BUSINESS_KEY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="START_TIME_" Type="datetime" Nullable="false" />
+          <Property Name="END_TIME_" Type="datetime" />
+          <Property Name="DURATION_" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="START_USER_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="START_ACT_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="END_ACT_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="SUPER_PROCESS_INSTANCE_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="DELETE_REASON_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_HI_TASKINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="TASK_DEF_KEY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PARENT_TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="DESCRIPTION_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="OWNER_" Type="nvarchar" MaxLength="255" />
+          <Property Name="ASSIGNEE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="START_TIME_" Type="datetime" Nullable="false" />
+          <Property Name="CLAIM_TIME_" Type="datetime" />
+          <Property Name="END_TIME_" Type="datetime" />
+          <Property Name="DURATION_" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="DELETE_REASON_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PRIORITY_" Type="int" />
+          <Property Name="DUE_DATE_" Type="datetime" />
+          <Property Name="FORM_KEY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="CATEGORY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_HI_VARINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VAR_TYPE_" Type="nvarchar" MaxLength="100" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="BYTEARRAY_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="DOUBLE_" Type="float" />
+          <Property Name="LONG_" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="TEXT_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TEXT2_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CREATE_TIME_" Type="datetime" />
+          <Property Name="LAST_UPDATED_TIME_" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ACT_ID_GROUP">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_ID_INFO">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="USER_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="64" />
+          <Property Name="KEY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="VALUE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PASSWORD_" Type="varbinary(max)" />
+          <Property Name="PARENT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_ID_MEMBERSHIP">
+          <Key>
+            <PropertyRef Name="USER_ID_" />
+            <PropertyRef Name="GROUP_ID_" />
+          </Key>
+          <Property Name="USER_ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="GROUP_ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ACT_ID_USER">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="FIRST_" Type="nvarchar" MaxLength="255" />
+          <Property Name="LAST_" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMAIL_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PWD_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PICTURE_ID_" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="ACT_RE_DEPLOYMENT">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="CATEGORY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="DEPLOY_TIME_" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ACT_RE_MODEL">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="KEY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="CATEGORY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="CREATE_TIME_" Type="datetime" />
+          <Property Name="LAST_UPDATE_TIME_" Type="datetime" />
+          <Property Name="VERSION_" Type="int" />
+          <Property Name="META_INFO_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DEPLOYMENT_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="EDITOR_SOURCE_VALUE_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="EDITOR_SOURCE_EXTRA_VALUE_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_RE_PROCDEF">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="CATEGORY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="KEY_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="VERSION_" Type="int" Nullable="false" />
+          <Property Name="DEPLOYMENT_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="RESOURCE_NAME_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DGRM_RESOURCE_NAME_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DESCRIPTION_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="HAS_START_FORM_KEY_" Type="tinyint" />
+          <Property Name="SUSPENSION_STATE_" Type="tinyint" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_RU_EVENT_SUBSCR">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="EVENT_TYPE_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EVENT_NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="ACTIVITY_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="CONFIGURATION_" Type="nvarchar" MaxLength="255" />
+          <Property Name="CREATED_" Type="datetime" Nullable="false" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_RU_EXECUTION">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="BUSINESS_KEY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PARENT_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="SUPER_EXEC_" Type="nvarchar" MaxLength="64" />
+          <Property Name="ACT_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="IS_ACTIVE_" Type="tinyint" />
+          <Property Name="IS_CONCURRENT_" Type="tinyint" />
+          <Property Name="IS_SCOPE_" Type="tinyint" />
+          <Property Name="IS_EVENT_SCOPE_" Type="tinyint" />
+          <Property Name="SUSPENSION_STATE_" Type="tinyint" />
+          <Property Name="CACHED_ENT_STATE_" Type="int" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_RU_IDENTITYLINK">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="GROUP_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="USER_ID_" Type="nvarchar" MaxLength="255" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="ACT_RU_JOB">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LOCK_EXP_TIME_" Type="datetime" />
+          <Property Name="LOCK_OWNER_" Type="nvarchar" MaxLength="255" />
+          <Property Name="EXCLUSIVE_" Type="bit" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROCESS_INSTANCE_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="RETRIES_" Type="int" />
+          <Property Name="EXCEPTION_STACK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="EXCEPTION_MSG_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DUEDATE_" Type="datetime" />
+          <Property Name="REPEAT_" Type="nvarchar" MaxLength="255" />
+          <Property Name="HANDLER_TYPE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="HANDLER_CFG_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_RU_TASK">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_DEF_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" />
+          <Property Name="PARENT_TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="DESCRIPTION_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TASK_DEF_KEY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="OWNER_" Type="nvarchar" MaxLength="255" />
+          <Property Name="ASSIGNEE_" Type="nvarchar" MaxLength="255" />
+          <Property Name="DELEGATION_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PRIORITY_" Type="int" />
+          <Property Name="CREATE_TIME_" Type="datetime" />
+          <Property Name="DUE_DATE_" Type="datetime" />
+          <Property Name="CATEGORY_" Type="nvarchar" MaxLength="255" />
+          <Property Name="SUSPENSION_STATE_" Type="int" />
+          <Property Name="TENANT_ID_" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ACT_RU_VARIABLE">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="REV_" Type="int" />
+          <Property Name="TYPE_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NAME_" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EXECUTION_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="PROC_INST_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="TASK_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="BYTEARRAY_ID_" Type="nvarchar" MaxLength="64" />
+          <Property Name="DOUBLE_" Type="float" />
+          <Property Name="LONG_" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="TEXT_" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TEXT2_" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <Association Name="ACT_FK_ATHRZ_PROCEDEF">
+          <End Role="ACT_RE_PROCDEF" Type="Self.ACT_RE_PROCDEF" Multiplicity="0..1" />
+          <End Role="ACT_RU_IDENTITYLINK" Type="Self.ACT_RU_IDENTITYLINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_PROCDEF">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_IDENTITYLINK">
+              <PropertyRef Name="PROC_DEF_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_BYTEARR_DEPL">
+          <End Role="ACT_RE_DEPLOYMENT" Type="Self.ACT_RE_DEPLOYMENT" Multiplicity="0..1" />
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_DEPLOYMENT">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="DEPLOYMENT_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EVENT_EXEC">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_EVENT_SUBSCR" Type="Self.ACT_RU_EVENT_SUBSCR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EVENT_SUBSCR">
+              <PropertyRef Name="EXECUTION_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EXE_PARENT">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_EXECUTION1" Type="Self.ACT_RU_EXECUTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EXECUTION1">
+              <PropertyRef Name="PARENT_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EXE_PROCDEF">
+          <End Role="ACT_RE_PROCDEF" Type="Self.ACT_RE_PROCDEF" Multiplicity="0..1" />
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_PROCDEF">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="PROC_DEF_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EXE_SUPER">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_EXECUTION1" Type="Self.ACT_RU_EXECUTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EXECUTION1">
+              <PropertyRef Name="SUPER_EXEC_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_IDL_PROCINST">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_IDENTITYLINK" Type="Self.ACT_RU_IDENTITYLINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_IDENTITYLINK">
+              <PropertyRef Name="PROC_INST_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_JOB_EXCEPTION">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RU_JOB" Type="Self.ACT_RU_JOB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_JOB">
+              <PropertyRef Name="EXCEPTION_STACK_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MEMB_GROUP">
+          <End Role="ACT_ID_GROUP" Type="Self.ACT_ID_GROUP" Multiplicity="1" />
+          <End Role="ACT_ID_MEMBERSHIP" Type="Self.ACT_ID_MEMBERSHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_ID_GROUP">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_ID_MEMBERSHIP">
+              <PropertyRef Name="GROUP_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MEMB_USER">
+          <End Role="ACT_ID_USER" Type="Self.ACT_ID_USER" Multiplicity="1" />
+          <End Role="ACT_ID_MEMBERSHIP" Type="Self.ACT_ID_MEMBERSHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_ID_USER">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_ID_MEMBERSHIP">
+              <PropertyRef Name="USER_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MODEL_DEPLOYMENT">
+          <End Role="ACT_RE_DEPLOYMENT" Type="Self.ACT_RE_DEPLOYMENT" Multiplicity="0..1" />
+          <End Role="ACT_RE_MODEL" Type="Self.ACT_RE_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_DEPLOYMENT">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RE_MODEL">
+              <PropertyRef Name="DEPLOYMENT_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MODEL_SOURCE">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RE_MODEL" Type="Self.ACT_RE_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RE_MODEL">
+              <PropertyRef Name="EDITOR_SOURCE_VALUE_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MODEL_SOURCE_EXTRA">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RE_MODEL" Type="Self.ACT_RE_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RE_MODEL">
+              <PropertyRef Name="EDITOR_SOURCE_EXTRA_VALUE_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TASK_EXE">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_TASK">
+              <PropertyRef Name="EXECUTION_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TASK_PROCDEF">
+          <End Role="ACT_RE_PROCDEF" Type="Self.ACT_RE_PROCDEF" Multiplicity="0..1" />
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_PROCDEF">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_TASK">
+              <PropertyRef Name="PROC_DEF_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TASK_PROCINST">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_TASK">
+              <PropertyRef Name="PROC_INST_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TSKASS_TASK">
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="0..1" />
+          <End Role="ACT_RU_IDENTITYLINK" Type="Self.ACT_RU_IDENTITYLINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_TASK">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_IDENTITYLINK">
+              <PropertyRef Name="TASK_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_VAR_BYTEARRAY">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RU_VARIABLE" Type="Self.ACT_RU_VARIABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_VARIABLE">
+              <PropertyRef Name="BYTEARRAY_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_VAR_EXE">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_VARIABLE" Type="Self.ACT_RU_VARIABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_VARIABLE">
+              <PropertyRef Name="EXECUTION_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_VAR_PROCINST">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_VARIABLE" Type="Self.ACT_RU_VARIABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_VARIABLE">
+              <PropertyRef Name="PROC_INST_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ActivitiModelStoreContainer">
+          <EntitySet Name="ACT_GE_BYTEARRAY" EntityType="Self.ACT_GE_BYTEARRAY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_GE_PROPERTY" EntityType="Self.ACT_GE_PROPERTY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_ACTINST" EntityType="Self.ACT_HI_ACTINST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_ATTACHMENT" EntityType="Self.ACT_HI_ATTACHMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_COMMENT" EntityType="Self.ACT_HI_COMMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_DETAIL" EntityType="Self.ACT_HI_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_IDENTITYLINK" EntityType="Self.ACT_HI_IDENTITYLINK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_PROCINST" EntityType="Self.ACT_HI_PROCINST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_TASKINST" EntityType="Self.ACT_HI_TASKINST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_HI_VARINST" EntityType="Self.ACT_HI_VARINST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_ID_GROUP" EntityType="Self.ACT_ID_GROUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_ID_INFO" EntityType="Self.ACT_ID_INFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_ID_MEMBERSHIP" EntityType="Self.ACT_ID_MEMBERSHIP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_ID_USER" EntityType="Self.ACT_ID_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RE_DEPLOYMENT" EntityType="Self.ACT_RE_DEPLOYMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RE_MODEL" EntityType="Self.ACT_RE_MODEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RE_PROCDEF" EntityType="Self.ACT_RE_PROCDEF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RU_EVENT_SUBSCR" EntityType="Self.ACT_RU_EVENT_SUBSCR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RU_EXECUTION" EntityType="Self.ACT_RU_EXECUTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RU_IDENTITYLINK" EntityType="Self.ACT_RU_IDENTITYLINK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RU_JOB" EntityType="Self.ACT_RU_JOB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RU_TASK" EntityType="Self.ACT_RU_TASK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ACT_RU_VARIABLE" EntityType="Self.ACT_RU_VARIABLE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ACT_FK_ATHRZ_PROCEDEF" Association="Self.ACT_FK_ATHRZ_PROCEDEF">
+            <End Role="ACT_RE_PROCDEF" EntitySet="ACT_RE_PROCDEF" />
+            <End Role="ACT_RU_IDENTITYLINK" EntitySet="ACT_RU_IDENTITYLINK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_BYTEARR_DEPL" Association="Self.ACT_FK_BYTEARR_DEPL">
+            <End Role="ACT_RE_DEPLOYMENT" EntitySet="ACT_RE_DEPLOYMENT" />
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EVENT_EXEC" Association="Self.ACT_FK_EVENT_EXEC">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_EVENT_SUBSCR" EntitySet="ACT_RU_EVENT_SUBSCR" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EXE_PARENT" Association="Self.ACT_FK_EXE_PARENT">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_EXECUTION1" EntitySet="ACT_RU_EXECUTION" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EXE_PROCDEF" Association="Self.ACT_FK_EXE_PROCDEF">
+            <End Role="ACT_RE_PROCDEF" EntitySet="ACT_RE_PROCDEF" />
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EXE_SUPER" Association="Self.ACT_FK_EXE_SUPER">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_EXECUTION1" EntitySet="ACT_RU_EXECUTION" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_IDL_PROCINST" Association="Self.ACT_FK_IDL_PROCINST">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_IDENTITYLINK" EntitySet="ACT_RU_IDENTITYLINK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_JOB_EXCEPTION" Association="Self.ACT_FK_JOB_EXCEPTION">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RU_JOB" EntitySet="ACT_RU_JOB" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MEMB_GROUP" Association="Self.ACT_FK_MEMB_GROUP">
+            <End Role="ACT_ID_GROUP" EntitySet="ACT_ID_GROUP" />
+            <End Role="ACT_ID_MEMBERSHIP" EntitySet="ACT_ID_MEMBERSHIP" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MEMB_USER" Association="Self.ACT_FK_MEMB_USER">
+            <End Role="ACT_ID_USER" EntitySet="ACT_ID_USER" />
+            <End Role="ACT_ID_MEMBERSHIP" EntitySet="ACT_ID_MEMBERSHIP" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MODEL_DEPLOYMENT" Association="Self.ACT_FK_MODEL_DEPLOYMENT">
+            <End Role="ACT_RE_DEPLOYMENT" EntitySet="ACT_RE_DEPLOYMENT" />
+            <End Role="ACT_RE_MODEL" EntitySet="ACT_RE_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MODEL_SOURCE" Association="Self.ACT_FK_MODEL_SOURCE">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RE_MODEL" EntitySet="ACT_RE_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MODEL_SOURCE_EXTRA" Association="Self.ACT_FK_MODEL_SOURCE_EXTRA">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RE_MODEL" EntitySet="ACT_RE_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TASK_EXE" Association="Self.ACT_FK_TASK_EXE">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TASK_PROCDEF" Association="Self.ACT_FK_TASK_PROCDEF">
+            <End Role="ACT_RE_PROCDEF" EntitySet="ACT_RE_PROCDEF" />
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TASK_PROCINST" Association="Self.ACT_FK_TASK_PROCINST">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TSKASS_TASK" Association="Self.ACT_FK_TSKASS_TASK">
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+            <End Role="ACT_RU_IDENTITYLINK" EntitySet="ACT_RU_IDENTITYLINK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_VAR_BYTEARRAY" Association="Self.ACT_FK_VAR_BYTEARRAY">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RU_VARIABLE" EntitySet="ACT_RU_VARIABLE" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_VAR_EXE" Association="Self.ACT_FK_VAR_EXE">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_VARIABLE" EntitySet="ACT_RU_VARIABLE" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_VAR_PROCINST" Association="Self.ACT_FK_VAR_PROCINST">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_VARIABLE" EntitySet="ACT_RU_VARIABLE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ActivitiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ACT_GE_BYTEARRAY">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DEPLOYMENT_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="BYTES_" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="GENERATED_" Type="Byte" />
+          <NavigationProperty Name="ACT_RE_DEPLOYMENT" Relationship="Self.ACT_FK_BYTEARR_DEPL" FromRole="ACT_GE_BYTEARRAY" ToRole="ACT_RE_DEPLOYMENT" />
+          <NavigationProperty Name="ACT_RU_JOB" Relationship="Self.ACT_FK_JOB_EXCEPTION" FromRole="ACT_GE_BYTEARRAY" ToRole="ACT_RU_JOB" />
+          <NavigationProperty Name="ACT_RE_MODEL" Relationship="Self.ACT_FK_MODEL_SOURCE" FromRole="ACT_GE_BYTEARRAY" ToRole="ACT_RE_MODEL" />
+          <NavigationProperty Name="ACT_RE_MODEL1" Relationship="Self.ACT_FK_MODEL_SOURCE_EXTRA" FromRole="ACT_GE_BYTEARRAY" ToRole="ACT_RE_MODEL" />
+          <NavigationProperty Name="ACT_RU_VARIABLE" Relationship="Self.ACT_FK_VAR_BYTEARRAY" FromRole="ACT_GE_BYTEARRAY" ToRole="ACT_RU_VARIABLE" />
+        </EntityType>
+        <EntityType Name="ACT_GE_PROPERTY">
+          <Key>
+            <PropertyRef Name="NAME_" />
+          </Key>
+          <Property Name="NAME_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VALUE_" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="REV_" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ACT_HI_ACTINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ACT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CALL_PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ACT_NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ACT_TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ASSIGNEE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="START_TIME_" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="END_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="DURATION_" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACT_HI_ATTACHMENT">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="USER_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="URL_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CONTENT_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACT_HI_COMMENT">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TIME_" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USER_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ACTION_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MESSAGE_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FULL_MSG_" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ACT_HI_DETAIL">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ACT_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VAR_TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="TIME_" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BYTEARRAY_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DOUBLE_" Type="Double" />
+          <Property Name="LONG_" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="TEXT_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TEXT2_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACT_HI_IDENTITYLINK">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GROUP_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACT_HI_PROCINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BUSINESS_KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="START_TIME_" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="END_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="DURATION_" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="START_USER_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="START_ACT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="END_ACT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SUPER_PROCESS_INSTANCE_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DELETE_REASON_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACT_HI_TASKINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_DEF_KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PARENT_TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="OWNER_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ASSIGNEE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="START_TIME_" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CLAIM_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="END_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="DURATION_" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="DELETE_REASON_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PRIORITY_" Type="Int32" />
+          <Property Name="DUE_DATE_" Type="DateTime" Precision="3" />
+          <Property Name="FORM_KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACT_HI_VARINST">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VAR_TYPE_" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="BYTEARRAY_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DOUBLE_" Type="Double" />
+          <Property Name="LONG_" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="TEXT_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TEXT2_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATED_TIME_" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ACT_ID_GROUP">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_ID_USER" Relationship="Self.ACT_ID_MEMBERSHIP" FromRole="ACT_ID_GROUP" ToRole="ACT_ID_USER" />
+        </EntityType>
+        <EntityType Name="ACT_ID_INFO">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="USER_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VALUE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD_" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PARENT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ACT_ID_USER">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="FIRST_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LAST_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PWD_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PICTURE_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_ID_GROUP" Relationship="Self.ACT_ID_MEMBERSHIP" FromRole="ACT_ID_USER" ToRole="ACT_ID_GROUP" />
+        </EntityType>
+        <EntityType Name="ACT_RE_DEPLOYMENT">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DEPLOY_TIME_" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ACT_GE_BYTEARRAY" Relationship="Self.ACT_FK_BYTEARR_DEPL" FromRole="ACT_RE_DEPLOYMENT" ToRole="ACT_GE_BYTEARRAY" />
+          <NavigationProperty Name="ACT_RE_MODEL" Relationship="Self.ACT_FK_MODEL_DEPLOYMENT" FromRole="ACT_RE_DEPLOYMENT" ToRole="ACT_RE_MODEL" />
+        </EntityType>
+        <EntityType Name="ACT_RE_MODEL">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CREATE_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="LAST_UPDATE_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="VERSION_" Type="Int32" />
+          <Property Name="META_INFO_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DEPLOYMENT_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EDITOR_SOURCE_VALUE_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EDITOR_SOURCE_EXTRA_VALUE_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_GE_BYTEARRAY" Relationship="Self.ACT_FK_MODEL_SOURCE" FromRole="ACT_RE_MODEL" ToRole="ACT_GE_BYTEARRAY" />
+          <NavigationProperty Name="ACT_GE_BYTEARRAY1" Relationship="Self.ACT_FK_MODEL_SOURCE_EXTRA" FromRole="ACT_RE_MODEL" ToRole="ACT_GE_BYTEARRAY" />
+          <NavigationProperty Name="ACT_RE_DEPLOYMENT" Relationship="Self.ACT_FK_MODEL_DEPLOYMENT" FromRole="ACT_RE_MODEL" ToRole="ACT_RE_DEPLOYMENT" />
+        </EntityType>
+        <EntityType Name="ACT_RE_PROCDEF">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="CATEGORY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VERSION_" Type="Int32" Nullable="false" />
+          <Property Name="DEPLOYMENT_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RESOURCE_NAME_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DGRM_RESOURCE_NAME_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="HAS_START_FORM_KEY_" Type="Byte" />
+          <Property Name="SUSPENSION_STATE_" Type="Byte" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_RU_IDENTITYLINK" Relationship="Self.ACT_FK_ATHRZ_PROCEDEF" FromRole="ACT_RE_PROCDEF" ToRole="ACT_RU_IDENTITYLINK" />
+          <NavigationProperty Name="ACT_RU_EXECUTION" Relationship="Self.ACT_FK_EXE_PROCDEF" FromRole="ACT_RE_PROCDEF" ToRole="ACT_RU_EXECUTION" />
+          <NavigationProperty Name="ACT_RU_TASK" Relationship="Self.ACT_FK_TASK_PROCDEF" FromRole="ACT_RE_PROCDEF" ToRole="ACT_RU_TASK" />
+        </EntityType>
+        <EntityType Name="ACT_RU_EVENT_SUBSCR">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="EVENT_TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EVENT_NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVITY_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CONFIGURATION_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_RU_EXECUTION" Relationship="Self.ACT_FK_EVENT_EXEC" FromRole="ACT_RU_EVENT_SUBSCR" ToRole="ACT_RU_EXECUTION" />
+        </EntityType>
+        <EntityType Name="ACT_RU_EXECUTION">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="BUSINESS_KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PARENT_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="SUPER_EXEC_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ACT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ACTIVE_" Type="Byte" />
+          <Property Name="IS_CONCURRENT_" Type="Byte" />
+          <Property Name="IS_SCOPE_" Type="Byte" />
+          <Property Name="IS_EVENT_SCOPE_" Type="Byte" />
+          <Property Name="SUSPENSION_STATE_" Type="Byte" />
+          <Property Name="CACHED_ENT_STATE_" Type="Int32" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_RE_PROCDEF" Relationship="Self.ACT_FK_EXE_PROCDEF" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RE_PROCDEF" />
+          <NavigationProperty Name="ACT_RU_EVENT_SUBSCR" Relationship="Self.ACT_FK_EVENT_EXEC" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_EVENT_SUBSCR" />
+          <NavigationProperty Name="ACT_RU_EXECUTION1" Relationship="Self.ACT_FK_EXE_PARENT" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_EXECUTION1" />
+          <NavigationProperty Name="ACT_RU_EXECUTION2" Relationship="Self.ACT_FK_EXE_PARENT" FromRole="ACT_RU_EXECUTION1" ToRole="ACT_RU_EXECUTION" />
+          <NavigationProperty Name="ACT_RU_EXECUTION11" Relationship="Self.ACT_FK_EXE_SUPER" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_EXECUTION1" />
+          <NavigationProperty Name="ACT_RU_EXECUTION3" Relationship="Self.ACT_FK_EXE_SUPER" FromRole="ACT_RU_EXECUTION1" ToRole="ACT_RU_EXECUTION" />
+          <NavigationProperty Name="ACT_RU_IDENTITYLINK" Relationship="Self.ACT_FK_IDL_PROCINST" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_IDENTITYLINK" />
+          <NavigationProperty Name="ACT_RU_TASK" Relationship="Self.ACT_FK_TASK_EXE" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_TASK" />
+          <NavigationProperty Name="ACT_RU_TASK1" Relationship="Self.ACT_FK_TASK_PROCINST" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_TASK" />
+          <NavigationProperty Name="ACT_RU_VARIABLE" Relationship="Self.ACT_FK_VAR_EXE" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_VARIABLE" />
+          <NavigationProperty Name="ACT_RU_VARIABLE1" Relationship="Self.ACT_FK_VAR_PROCINST" FromRole="ACT_RU_EXECUTION" ToRole="ACT_RU_VARIABLE" />
+        </EntityType>
+        <EntityType Name="ACT_RU_IDENTITYLINK">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="GROUP_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="USER_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_RE_PROCDEF" Relationship="Self.ACT_FK_ATHRZ_PROCEDEF" FromRole="ACT_RU_IDENTITYLINK" ToRole="ACT_RE_PROCDEF" />
+          <NavigationProperty Name="ACT_RU_EXECUTION" Relationship="Self.ACT_FK_IDL_PROCINST" FromRole="ACT_RU_IDENTITYLINK" ToRole="ACT_RU_EXECUTION" />
+          <NavigationProperty Name="ACT_RU_TASK" Relationship="Self.ACT_FK_TSKASS_TASK" FromRole="ACT_RU_IDENTITYLINK" ToRole="ACT_RU_TASK" />
+        </EntityType>
+        <EntityType Name="ACT_RU_JOB">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LOCK_EXP_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="LOCK_OWNER_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EXCLUSIVE_" Type="Boolean" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROCESS_INSTANCE_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RETRIES_" Type="Int32" />
+          <Property Name="EXCEPTION_STACK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EXCEPTION_MSG_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DUEDATE_" Type="DateTime" Precision="3" />
+          <Property Name="REPEAT_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HANDLER_TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HANDLER_CFG_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_GE_BYTEARRAY" Relationship="Self.ACT_FK_JOB_EXCEPTION" FromRole="ACT_RU_JOB" ToRole="ACT_GE_BYTEARRAY" />
+        </EntityType>
+        <EntityType Name="ACT_RU_TASK">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_DEF_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PARENT_TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_DEF_KEY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OWNER_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ASSIGNEE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DELEGATION_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PRIORITY_" Type="Int32" />
+          <Property Name="CREATE_TIME_" Type="DateTime" Precision="3" />
+          <Property Name="DUE_DATE_" Type="DateTime" Precision="3" />
+          <Property Name="CATEGORY_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SUSPENSION_STATE_" Type="Int32" />
+          <Property Name="TENANT_ID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_RE_PROCDEF" Relationship="Self.ACT_FK_TASK_PROCDEF" FromRole="ACT_RU_TASK" ToRole="ACT_RE_PROCDEF" />
+          <NavigationProperty Name="ACT_RU_EXECUTION" Relationship="Self.ACT_FK_TASK_EXE" FromRole="ACT_RU_TASK" ToRole="ACT_RU_EXECUTION" />
+          <NavigationProperty Name="ACT_RU_EXECUTION1" Relationship="Self.ACT_FK_TASK_PROCINST" FromRole="ACT_RU_TASK" ToRole="ACT_RU_EXECUTION" />
+          <NavigationProperty Name="ACT_RU_IDENTITYLINK" Relationship="Self.ACT_FK_TSKASS_TASK" FromRole="ACT_RU_TASK" ToRole="ACT_RU_IDENTITYLINK" />
+        </EntityType>
+        <EntityType Name="ACT_RU_VARIABLE">
+          <Key>
+            <PropertyRef Name="ID_" />
+          </Key>
+          <Property Name="ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="REV_" Type="Int32" />
+          <Property Name="TYPE_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NAME_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EXECUTION_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PROC_INST_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TASK_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="BYTEARRAY_ID_" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DOUBLE_" Type="Double" />
+          <Property Name="LONG_" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="TEXT_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TEXT2_" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ACT_GE_BYTEARRAY" Relationship="Self.ACT_FK_VAR_BYTEARRAY" FromRole="ACT_RU_VARIABLE" ToRole="ACT_GE_BYTEARRAY" />
+          <NavigationProperty Name="ACT_RU_EXECUTION" Relationship="Self.ACT_FK_VAR_EXE" FromRole="ACT_RU_VARIABLE" ToRole="ACT_RU_EXECUTION" />
+          <NavigationProperty Name="ACT_RU_EXECUTION1" Relationship="Self.ACT_FK_VAR_PROCINST" FromRole="ACT_RU_VARIABLE" ToRole="ACT_RU_EXECUTION" />
+        </EntityType>
+        <Association Name="ACT_FK_BYTEARR_DEPL">
+          <End Role="ACT_RE_DEPLOYMENT" Type="Self.ACT_RE_DEPLOYMENT" Multiplicity="0..1" />
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_DEPLOYMENT">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="DEPLOYMENT_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_JOB_EXCEPTION">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RU_JOB" Type="Self.ACT_RU_JOB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_JOB">
+              <PropertyRef Name="EXCEPTION_STACK_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MODEL_SOURCE">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RE_MODEL" Type="Self.ACT_RE_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RE_MODEL">
+              <PropertyRef Name="EDITOR_SOURCE_VALUE_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MODEL_SOURCE_EXTRA">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RE_MODEL" Type="Self.ACT_RE_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RE_MODEL">
+              <PropertyRef Name="EDITOR_SOURCE_EXTRA_VALUE_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_VAR_BYTEARRAY">
+          <End Role="ACT_GE_BYTEARRAY" Type="Self.ACT_GE_BYTEARRAY" Multiplicity="0..1" />
+          <End Role="ACT_RU_VARIABLE" Type="Self.ACT_RU_VARIABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_GE_BYTEARRAY">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_VARIABLE">
+              <PropertyRef Name="BYTEARRAY_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_MODEL_DEPLOYMENT">
+          <End Role="ACT_RE_DEPLOYMENT" Type="Self.ACT_RE_DEPLOYMENT" Multiplicity="0..1" />
+          <End Role="ACT_RE_MODEL" Type="Self.ACT_RE_MODEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_DEPLOYMENT">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RE_MODEL">
+              <PropertyRef Name="DEPLOYMENT_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_ATHRZ_PROCEDEF">
+          <End Role="ACT_RE_PROCDEF" Type="Self.ACT_RE_PROCDEF" Multiplicity="0..1" />
+          <End Role="ACT_RU_IDENTITYLINK" Type="Self.ACT_RU_IDENTITYLINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_PROCDEF">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_IDENTITYLINK">
+              <PropertyRef Name="PROC_DEF_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EXE_PROCDEF">
+          <End Role="ACT_RE_PROCDEF" Type="Self.ACT_RE_PROCDEF" Multiplicity="0..1" />
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_PROCDEF">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="PROC_DEF_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TASK_PROCDEF">
+          <End Role="ACT_RE_PROCDEF" Type="Self.ACT_RE_PROCDEF" Multiplicity="0..1" />
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RE_PROCDEF">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_TASK">
+              <PropertyRef Name="PROC_DEF_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EVENT_EXEC">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_EVENT_SUBSCR" Type="Self.ACT_RU_EVENT_SUBSCR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EVENT_SUBSCR">
+              <PropertyRef Name="EXECUTION_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EXE_PARENT">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_EXECUTION1" Type="Self.ACT_RU_EXECUTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EXECUTION1">
+              <PropertyRef Name="PARENT_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_EXE_SUPER">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_EXECUTION1" Type="Self.ACT_RU_EXECUTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_EXECUTION1">
+              <PropertyRef Name="SUPER_EXEC_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_IDL_PROCINST">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_IDENTITYLINK" Type="Self.ACT_RU_IDENTITYLINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_IDENTITYLINK">
+              <PropertyRef Name="PROC_INST_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TASK_EXE">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_TASK">
+              <PropertyRef Name="EXECUTION_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TASK_PROCINST">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_TASK">
+              <PropertyRef Name="PROC_INST_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_VAR_EXE">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_VARIABLE" Type="Self.ACT_RU_VARIABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_VARIABLE">
+              <PropertyRef Name="EXECUTION_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_VAR_PROCINST">
+          <End Role="ACT_RU_EXECUTION" Type="Self.ACT_RU_EXECUTION" Multiplicity="0..1" />
+          <End Role="ACT_RU_VARIABLE" Type="Self.ACT_RU_VARIABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_EXECUTION">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_VARIABLE">
+              <PropertyRef Name="PROC_INST_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_FK_TSKASS_TASK">
+          <End Role="ACT_RU_TASK" Type="Self.ACT_RU_TASK" Multiplicity="0..1" />
+          <End Role="ACT_RU_IDENTITYLINK" Type="Self.ACT_RU_IDENTITYLINK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACT_RU_TASK">
+              <PropertyRef Name="ID_" />
+            </Principal>
+            <Dependent Role="ACT_RU_IDENTITYLINK">
+              <PropertyRef Name="TASK_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ACT_ID_MEMBERSHIP">
+          <End Role="ACT_ID_GROUP" Type="Self.ACT_ID_GROUP" Multiplicity="*" />
+          <End Role="ACT_ID_USER" Type="Self.ACT_ID_USER" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ActivitiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACT_GE_BYTEARRAY" EntityType="Self.ACT_GE_BYTEARRAY" />
+          <EntitySet Name="ACT_GE_PROPERTY" EntityType="Self.ACT_GE_PROPERTY" />
+          <EntitySet Name="ACT_HI_ACTINST" EntityType="Self.ACT_HI_ACTINST" />
+          <EntitySet Name="ACT_HI_ATTACHMENT" EntityType="Self.ACT_HI_ATTACHMENT" />
+          <EntitySet Name="ACT_HI_COMMENT" EntityType="Self.ACT_HI_COMMENT" />
+          <EntitySet Name="ACT_HI_DETAIL" EntityType="Self.ACT_HI_DETAIL" />
+          <EntitySet Name="ACT_HI_IDENTITYLINK" EntityType="Self.ACT_HI_IDENTITYLINK" />
+          <EntitySet Name="ACT_HI_PROCINST" EntityType="Self.ACT_HI_PROCINST" />
+          <EntitySet Name="ACT_HI_TASKINST" EntityType="Self.ACT_HI_TASKINST" />
+          <EntitySet Name="ACT_HI_VARINST" EntityType="Self.ACT_HI_VARINST" />
+          <EntitySet Name="ACT_ID_GROUP" EntityType="Self.ACT_ID_GROUP" />
+          <EntitySet Name="ACT_ID_INFO" EntityType="Self.ACT_ID_INFO" />
+          <EntitySet Name="ACT_ID_USER" EntityType="Self.ACT_ID_USER" />
+          <EntitySet Name="ACT_RE_DEPLOYMENT" EntityType="Self.ACT_RE_DEPLOYMENT" />
+          <EntitySet Name="ACT_RE_MODEL" EntityType="Self.ACT_RE_MODEL" />
+          <EntitySet Name="ACT_RE_PROCDEF" EntityType="Self.ACT_RE_PROCDEF" />
+          <EntitySet Name="ACT_RU_EVENT_SUBSCR" EntityType="Self.ACT_RU_EVENT_SUBSCR" />
+          <EntitySet Name="ACT_RU_EXECUTION" EntityType="Self.ACT_RU_EXECUTION" />
+          <EntitySet Name="ACT_RU_IDENTITYLINK" EntityType="Self.ACT_RU_IDENTITYLINK" />
+          <EntitySet Name="ACT_RU_JOB" EntityType="Self.ACT_RU_JOB" />
+          <EntitySet Name="ACT_RU_TASK" EntityType="Self.ACT_RU_TASK" />
+          <EntitySet Name="ACT_RU_VARIABLE" EntityType="Self.ACT_RU_VARIABLE" />
+          <AssociationSet Name="ACT_FK_BYTEARR_DEPL" Association="Self.ACT_FK_BYTEARR_DEPL">
+            <End Role="ACT_RE_DEPLOYMENT" EntitySet="ACT_RE_DEPLOYMENT" />
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_JOB_EXCEPTION" Association="Self.ACT_FK_JOB_EXCEPTION">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RU_JOB" EntitySet="ACT_RU_JOB" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MODEL_SOURCE" Association="Self.ACT_FK_MODEL_SOURCE">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RE_MODEL" EntitySet="ACT_RE_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MODEL_SOURCE_EXTRA" Association="Self.ACT_FK_MODEL_SOURCE_EXTRA">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RE_MODEL" EntitySet="ACT_RE_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_VAR_BYTEARRAY" Association="Self.ACT_FK_VAR_BYTEARRAY">
+            <End Role="ACT_GE_BYTEARRAY" EntitySet="ACT_GE_BYTEARRAY" />
+            <End Role="ACT_RU_VARIABLE" EntitySet="ACT_RU_VARIABLE" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_MODEL_DEPLOYMENT" Association="Self.ACT_FK_MODEL_DEPLOYMENT">
+            <End Role="ACT_RE_DEPLOYMENT" EntitySet="ACT_RE_DEPLOYMENT" />
+            <End Role="ACT_RE_MODEL" EntitySet="ACT_RE_MODEL" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_ATHRZ_PROCEDEF" Association="Self.ACT_FK_ATHRZ_PROCEDEF">
+            <End Role="ACT_RE_PROCDEF" EntitySet="ACT_RE_PROCDEF" />
+            <End Role="ACT_RU_IDENTITYLINK" EntitySet="ACT_RU_IDENTITYLINK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EXE_PROCDEF" Association="Self.ACT_FK_EXE_PROCDEF">
+            <End Role="ACT_RE_PROCDEF" EntitySet="ACT_RE_PROCDEF" />
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TASK_PROCDEF" Association="Self.ACT_FK_TASK_PROCDEF">
+            <End Role="ACT_RE_PROCDEF" EntitySet="ACT_RE_PROCDEF" />
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EVENT_EXEC" Association="Self.ACT_FK_EVENT_EXEC">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_EVENT_SUBSCR" EntitySet="ACT_RU_EVENT_SUBSCR" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EXE_PARENT" Association="Self.ACT_FK_EXE_PARENT">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_EXECUTION1" EntitySet="ACT_RU_EXECUTION" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_EXE_SUPER" Association="Self.ACT_FK_EXE_SUPER">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_EXECUTION1" EntitySet="ACT_RU_EXECUTION" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_IDL_PROCINST" Association="Self.ACT_FK_IDL_PROCINST">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_IDENTITYLINK" EntitySet="ACT_RU_IDENTITYLINK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TASK_EXE" Association="Self.ACT_FK_TASK_EXE">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TASK_PROCINST" Association="Self.ACT_FK_TASK_PROCINST">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_VAR_EXE" Association="Self.ACT_FK_VAR_EXE">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_VARIABLE" EntitySet="ACT_RU_VARIABLE" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_VAR_PROCINST" Association="Self.ACT_FK_VAR_PROCINST">
+            <End Role="ACT_RU_EXECUTION" EntitySet="ACT_RU_EXECUTION" />
+            <End Role="ACT_RU_VARIABLE" EntitySet="ACT_RU_VARIABLE" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_FK_TSKASS_TASK" Association="Self.ACT_FK_TSKASS_TASK">
+            <End Role="ACT_RU_TASK" EntitySet="ACT_RU_TASK" />
+            <End Role="ACT_RU_IDENTITYLINK" EntitySet="ACT_RU_IDENTITYLINK" />
+          </AssociationSet>
+          <AssociationSet Name="ACT_ID_MEMBERSHIP" Association="Self.ACT_ID_MEMBERSHIP">
+            <End Role="ACT_ID_GROUP" EntitySet="ACT_ID_GROUP" />
+            <End Role="ACT_ID_USER" EntitySet="ACT_ID_USER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ActivitiModelStoreContainer" CdmEntityContainer="ActivitiEntities">
+          <EntitySetMapping Name="ACT_GE_BYTEARRAY">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_GE_BYTEARRAY">
+              <MappingFragment StoreEntitySet="ACT_GE_BYTEARRAY">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="DEPLOYMENT_ID_" ColumnName="DEPLOYMENT_ID_" />
+                <ScalarProperty Name="BYTES_" ColumnName="BYTES_" />
+                <ScalarProperty Name="GENERATED_" ColumnName="GENERATED_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_GE_PROPERTY">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_GE_PROPERTY">
+              <MappingFragment StoreEntitySet="ACT_GE_PROPERTY">
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="VALUE_" ColumnName="VALUE_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_ACTINST">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_ACTINST">
+              <MappingFragment StoreEntitySet="ACT_HI_ACTINST">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="ACT_ID_" ColumnName="ACT_ID_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="CALL_PROC_INST_ID_" ColumnName="CALL_PROC_INST_ID_" />
+                <ScalarProperty Name="ACT_NAME_" ColumnName="ACT_NAME_" />
+                <ScalarProperty Name="ACT_TYPE_" ColumnName="ACT_TYPE_" />
+                <ScalarProperty Name="ASSIGNEE_" ColumnName="ASSIGNEE_" />
+                <ScalarProperty Name="START_TIME_" ColumnName="START_TIME_" />
+                <ScalarProperty Name="END_TIME_" ColumnName="END_TIME_" />
+                <ScalarProperty Name="DURATION_" ColumnName="DURATION_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_ATTACHMENT">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_ATTACHMENT">
+              <MappingFragment StoreEntitySet="ACT_HI_ATTACHMENT">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="USER_ID_" ColumnName="USER_ID_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="DESCRIPTION_" ColumnName="DESCRIPTION_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="URL_" ColumnName="URL_" />
+                <ScalarProperty Name="CONTENT_ID_" ColumnName="CONTENT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_COMMENT">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_COMMENT">
+              <MappingFragment StoreEntitySet="ACT_HI_COMMENT">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="TIME_" ColumnName="TIME_" />
+                <ScalarProperty Name="USER_ID_" ColumnName="USER_ID_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="ACTION_" ColumnName="ACTION_" />
+                <ScalarProperty Name="MESSAGE_" ColumnName="MESSAGE_" />
+                <ScalarProperty Name="FULL_MSG_" ColumnName="FULL_MSG_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_DETAIL">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_DETAIL">
+              <MappingFragment StoreEntitySet="ACT_HI_DETAIL">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="ACT_INST_ID_" ColumnName="ACT_INST_ID_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="VAR_TYPE_" ColumnName="VAR_TYPE_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="TIME_" ColumnName="TIME_" />
+                <ScalarProperty Name="BYTEARRAY_ID_" ColumnName="BYTEARRAY_ID_" />
+                <ScalarProperty Name="DOUBLE_" ColumnName="DOUBLE_" />
+                <ScalarProperty Name="LONG_" ColumnName="LONG_" />
+                <ScalarProperty Name="TEXT_" ColumnName="TEXT_" />
+                <ScalarProperty Name="TEXT2_" ColumnName="TEXT2_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_IDENTITYLINK">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_IDENTITYLINK">
+              <MappingFragment StoreEntitySet="ACT_HI_IDENTITYLINK">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="GROUP_ID_" ColumnName="GROUP_ID_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="USER_ID_" ColumnName="USER_ID_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_PROCINST">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_PROCINST">
+              <MappingFragment StoreEntitySet="ACT_HI_PROCINST">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="BUSINESS_KEY_" ColumnName="BUSINESS_KEY_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+                <ScalarProperty Name="START_TIME_" ColumnName="START_TIME_" />
+                <ScalarProperty Name="END_TIME_" ColumnName="END_TIME_" />
+                <ScalarProperty Name="DURATION_" ColumnName="DURATION_" />
+                <ScalarProperty Name="START_USER_ID_" ColumnName="START_USER_ID_" />
+                <ScalarProperty Name="START_ACT_ID_" ColumnName="START_ACT_ID_" />
+                <ScalarProperty Name="END_ACT_ID_" ColumnName="END_ACT_ID_" />
+                <ScalarProperty Name="SUPER_PROCESS_INSTANCE_ID_" ColumnName="SUPER_PROCESS_INSTANCE_ID_" />
+                <ScalarProperty Name="DELETE_REASON_" ColumnName="DELETE_REASON_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_TASKINST">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_TASKINST">
+              <MappingFragment StoreEntitySet="ACT_HI_TASKINST">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+                <ScalarProperty Name="TASK_DEF_KEY_" ColumnName="TASK_DEF_KEY_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="PARENT_TASK_ID_" ColumnName="PARENT_TASK_ID_" />
+                <ScalarProperty Name="DESCRIPTION_" ColumnName="DESCRIPTION_" />
+                <ScalarProperty Name="OWNER_" ColumnName="OWNER_" />
+                <ScalarProperty Name="ASSIGNEE_" ColumnName="ASSIGNEE_" />
+                <ScalarProperty Name="START_TIME_" ColumnName="START_TIME_" />
+                <ScalarProperty Name="CLAIM_TIME_" ColumnName="CLAIM_TIME_" />
+                <ScalarProperty Name="END_TIME_" ColumnName="END_TIME_" />
+                <ScalarProperty Name="DURATION_" ColumnName="DURATION_" />
+                <ScalarProperty Name="DELETE_REASON_" ColumnName="DELETE_REASON_" />
+                <ScalarProperty Name="PRIORITY_" ColumnName="PRIORITY_" />
+                <ScalarProperty Name="DUE_DATE_" ColumnName="DUE_DATE_" />
+                <ScalarProperty Name="FORM_KEY_" ColumnName="FORM_KEY_" />
+                <ScalarProperty Name="CATEGORY_" ColumnName="CATEGORY_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_HI_VARINST">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_HI_VARINST">
+              <MappingFragment StoreEntitySet="ACT_HI_VARINST">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="VAR_TYPE_" ColumnName="VAR_TYPE_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="BYTEARRAY_ID_" ColumnName="BYTEARRAY_ID_" />
+                <ScalarProperty Name="DOUBLE_" ColumnName="DOUBLE_" />
+                <ScalarProperty Name="LONG_" ColumnName="LONG_" />
+                <ScalarProperty Name="TEXT_" ColumnName="TEXT_" />
+                <ScalarProperty Name="TEXT2_" ColumnName="TEXT2_" />
+                <ScalarProperty Name="CREATE_TIME_" ColumnName="CREATE_TIME_" />
+                <ScalarProperty Name="LAST_UPDATED_TIME_" ColumnName="LAST_UPDATED_TIME_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_ID_GROUP">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_ID_GROUP">
+              <MappingFragment StoreEntitySet="ACT_ID_GROUP">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_ID_INFO">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_ID_INFO">
+              <MappingFragment StoreEntitySet="ACT_ID_INFO">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="USER_ID_" ColumnName="USER_ID_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="KEY_" ColumnName="KEY_" />
+                <ScalarProperty Name="VALUE_" ColumnName="VALUE_" />
+                <ScalarProperty Name="PASSWORD_" ColumnName="PASSWORD_" />
+                <ScalarProperty Name="PARENT_ID_" ColumnName="PARENT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_ID_USER">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_ID_USER">
+              <MappingFragment StoreEntitySet="ACT_ID_USER">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="FIRST_" ColumnName="FIRST_" />
+                <ScalarProperty Name="LAST_" ColumnName="LAST_" />
+                <ScalarProperty Name="EMAIL_" ColumnName="EMAIL_" />
+                <ScalarProperty Name="PWD_" ColumnName="PWD_" />
+                <ScalarProperty Name="PICTURE_ID_" ColumnName="PICTURE_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RE_DEPLOYMENT">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RE_DEPLOYMENT">
+              <MappingFragment StoreEntitySet="ACT_RE_DEPLOYMENT">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="CATEGORY_" ColumnName="CATEGORY_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+                <ScalarProperty Name="DEPLOY_TIME_" ColumnName="DEPLOY_TIME_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RE_MODEL">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RE_MODEL">
+              <MappingFragment StoreEntitySet="ACT_RE_MODEL">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="KEY_" ColumnName="KEY_" />
+                <ScalarProperty Name="CATEGORY_" ColumnName="CATEGORY_" />
+                <ScalarProperty Name="CREATE_TIME_" ColumnName="CREATE_TIME_" />
+                <ScalarProperty Name="LAST_UPDATE_TIME_" ColumnName="LAST_UPDATE_TIME_" />
+                <ScalarProperty Name="VERSION_" ColumnName="VERSION_" />
+                <ScalarProperty Name="META_INFO_" ColumnName="META_INFO_" />
+                <ScalarProperty Name="DEPLOYMENT_ID_" ColumnName="DEPLOYMENT_ID_" />
+                <ScalarProperty Name="EDITOR_SOURCE_VALUE_ID_" ColumnName="EDITOR_SOURCE_VALUE_ID_" />
+                <ScalarProperty Name="EDITOR_SOURCE_EXTRA_VALUE_ID_" ColumnName="EDITOR_SOURCE_EXTRA_VALUE_ID_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RE_PROCDEF">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RE_PROCDEF">
+              <MappingFragment StoreEntitySet="ACT_RE_PROCDEF">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="CATEGORY_" ColumnName="CATEGORY_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="KEY_" ColumnName="KEY_" />
+                <ScalarProperty Name="VERSION_" ColumnName="VERSION_" />
+                <ScalarProperty Name="DEPLOYMENT_ID_" ColumnName="DEPLOYMENT_ID_" />
+                <ScalarProperty Name="RESOURCE_NAME_" ColumnName="RESOURCE_NAME_" />
+                <ScalarProperty Name="DGRM_RESOURCE_NAME_" ColumnName="DGRM_RESOURCE_NAME_" />
+                <ScalarProperty Name="DESCRIPTION_" ColumnName="DESCRIPTION_" />
+                <ScalarProperty Name="HAS_START_FORM_KEY_" ColumnName="HAS_START_FORM_KEY_" />
+                <ScalarProperty Name="SUSPENSION_STATE_" ColumnName="SUSPENSION_STATE_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RU_EVENT_SUBSCR">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RU_EVENT_SUBSCR">
+              <MappingFragment StoreEntitySet="ACT_RU_EVENT_SUBSCR">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="EVENT_TYPE_" ColumnName="EVENT_TYPE_" />
+                <ScalarProperty Name="EVENT_NAME_" ColumnName="EVENT_NAME_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="ACTIVITY_ID_" ColumnName="ACTIVITY_ID_" />
+                <ScalarProperty Name="CONFIGURATION_" ColumnName="CONFIGURATION_" />
+                <ScalarProperty Name="CREATED_" ColumnName="CREATED_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RU_EXECUTION">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RU_EXECUTION">
+              <MappingFragment StoreEntitySet="ACT_RU_EXECUTION">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="BUSINESS_KEY_" ColumnName="BUSINESS_KEY_" />
+                <ScalarProperty Name="PARENT_ID_" ColumnName="PARENT_ID_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+                <ScalarProperty Name="SUPER_EXEC_" ColumnName="SUPER_EXEC_" />
+                <ScalarProperty Name="ACT_ID_" ColumnName="ACT_ID_" />
+                <ScalarProperty Name="IS_ACTIVE_" ColumnName="IS_ACTIVE_" />
+                <ScalarProperty Name="IS_CONCURRENT_" ColumnName="IS_CONCURRENT_" />
+                <ScalarProperty Name="IS_SCOPE_" ColumnName="IS_SCOPE_" />
+                <ScalarProperty Name="IS_EVENT_SCOPE_" ColumnName="IS_EVENT_SCOPE_" />
+                <ScalarProperty Name="SUSPENSION_STATE_" ColumnName="SUSPENSION_STATE_" />
+                <ScalarProperty Name="CACHED_ENT_STATE_" ColumnName="CACHED_ENT_STATE_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RU_IDENTITYLINK">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RU_IDENTITYLINK">
+              <MappingFragment StoreEntitySet="ACT_RU_IDENTITYLINK">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="GROUP_ID_" ColumnName="GROUP_ID_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="USER_ID_" ColumnName="USER_ID_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RU_JOB">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RU_JOB">
+              <MappingFragment StoreEntitySet="ACT_RU_JOB">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="LOCK_EXP_TIME_" ColumnName="LOCK_EXP_TIME_" />
+                <ScalarProperty Name="LOCK_OWNER_" ColumnName="LOCK_OWNER_" />
+                <ScalarProperty Name="EXCLUSIVE_" ColumnName="EXCLUSIVE_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="PROCESS_INSTANCE_ID_" ColumnName="PROCESS_INSTANCE_ID_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+                <ScalarProperty Name="RETRIES_" ColumnName="RETRIES_" />
+                <ScalarProperty Name="EXCEPTION_STACK_ID_" ColumnName="EXCEPTION_STACK_ID_" />
+                <ScalarProperty Name="EXCEPTION_MSG_" ColumnName="EXCEPTION_MSG_" />
+                <ScalarProperty Name="DUEDATE_" ColumnName="DUEDATE_" />
+                <ScalarProperty Name="REPEAT_" ColumnName="REPEAT_" />
+                <ScalarProperty Name="HANDLER_TYPE_" ColumnName="HANDLER_TYPE_" />
+                <ScalarProperty Name="HANDLER_CFG_" ColumnName="HANDLER_CFG_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RU_TASK">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RU_TASK">
+              <MappingFragment StoreEntitySet="ACT_RU_TASK">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="PROC_DEF_ID_" ColumnName="PROC_DEF_ID_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="PARENT_TASK_ID_" ColumnName="PARENT_TASK_ID_" />
+                <ScalarProperty Name="DESCRIPTION_" ColumnName="DESCRIPTION_" />
+                <ScalarProperty Name="TASK_DEF_KEY_" ColumnName="TASK_DEF_KEY_" />
+                <ScalarProperty Name="OWNER_" ColumnName="OWNER_" />
+                <ScalarProperty Name="ASSIGNEE_" ColumnName="ASSIGNEE_" />
+                <ScalarProperty Name="DELEGATION_" ColumnName="DELEGATION_" />
+                <ScalarProperty Name="PRIORITY_" ColumnName="PRIORITY_" />
+                <ScalarProperty Name="CREATE_TIME_" ColumnName="CREATE_TIME_" />
+                <ScalarProperty Name="DUE_DATE_" ColumnName="DUE_DATE_" />
+                <ScalarProperty Name="CATEGORY_" ColumnName="CATEGORY_" />
+                <ScalarProperty Name="SUSPENSION_STATE_" ColumnName="SUSPENSION_STATE_" />
+                <ScalarProperty Name="TENANT_ID_" ColumnName="TENANT_ID_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ACT_RU_VARIABLE">
+            <EntityTypeMapping TypeName="ActivitiModel.ACT_RU_VARIABLE">
+              <MappingFragment StoreEntitySet="ACT_RU_VARIABLE">
+                <ScalarProperty Name="ID_" ColumnName="ID_" />
+                <ScalarProperty Name="REV_" ColumnName="REV_" />
+                <ScalarProperty Name="TYPE_" ColumnName="TYPE_" />
+                <ScalarProperty Name="NAME_" ColumnName="NAME_" />
+                <ScalarProperty Name="EXECUTION_ID_" ColumnName="EXECUTION_ID_" />
+                <ScalarProperty Name="PROC_INST_ID_" ColumnName="PROC_INST_ID_" />
+                <ScalarProperty Name="TASK_ID_" ColumnName="TASK_ID_" />
+                <ScalarProperty Name="BYTEARRAY_ID_" ColumnName="BYTEARRAY_ID_" />
+                <ScalarProperty Name="DOUBLE_" ColumnName="DOUBLE_" />
+                <ScalarProperty Name="LONG_" ColumnName="LONG_" />
+                <ScalarProperty Name="TEXT_" ColumnName="TEXT_" />
+                <ScalarProperty Name="TEXT2_" ColumnName="TEXT2_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ACT_ID_MEMBERSHIP" TypeName="ActivitiModel.ACT_ID_MEMBERSHIP" StoreEntitySet="ACT_ID_MEMBERSHIP">
+            <EndProperty Name="ACT_ID_GROUP">
+              <ScalarProperty Name="ID_" ColumnName="GROUP_ID_" />
+            </EndProperty>
+            <EndProperty Name="ACT_ID_USER">
+              <ScalarProperty Name="ID_" ColumnName="USER_ID_" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

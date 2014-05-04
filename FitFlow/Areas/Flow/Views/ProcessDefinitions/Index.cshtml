@@ -13,6 +13,7 @@
             <th>プロセスキー</th>
             <th>カテゴリ</th>
             <th>プロセス名</th>
+            <th>開始</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,10 @@
             <td>@item.Key</td>
             <td>@item.Category</td>
             <td>@item.Name</td>
+            @{
+                var url = Url.Action("Start", "Forms", new { area = "Flow", key= item.Key, version = item.Version, processId = item.ProcessId });
+            }
+            <td><a href="@url" class="btn btn-primary">申請</a></td>
         </tr>
         }
     </tbody>

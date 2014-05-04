@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivitiClient", "..\Activi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivitiClient.Test", "..\ActivitiClient\ActivitiClient.Test\ActivitiClient.Test.csproj", "{0829C42F-4D78-4977-A570-4A9FCB4FD6EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitFlow.Test", "FitFlow.Test\FitFlow.Test.csproj", "{C1B71BE4-E6F6-4FC6-BA7F-5E1F4C09A528}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0829C42F-4D78-4977-A570-4A9FCB4FD6EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0829C42F-4D78-4977-A570-4A9FCB4FD6EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0829C42F-4D78-4977-A570-4A9FCB4FD6EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1B71BE4-E6F6-4FC6-BA7F-5E1F4C09A528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1B71BE4-E6F6-4FC6-BA7F-5E1F4C09A528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1B71BE4-E6F6-4FC6-BA7F-5E1F4C09A528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1B71BE4-E6F6-4FC6-BA7F-5E1F4C09A528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
