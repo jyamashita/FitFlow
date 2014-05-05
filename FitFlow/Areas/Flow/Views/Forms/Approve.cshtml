@@ -1,0 +1,33 @@
+﻿@model FitFlow.Areas.Flow.Models.Views.FormModel
+@{
+    ViewBag.Title = "Update";
+}
+
+<h3>
+    <span class="glyphicon glyphicon-check"></span>
+    @Model.Task.Name
+</h3>
+
+<form role="form" class="form-horizontal well" action="/Tasks/Action" method="post">
+    <fieldset>
+        <legend>
+            <span class="glyphicon glyphicon-pencil"></span>
+            @Model.ProcessDefinition.Name
+        </legend>
+        @Html.Hidden("processDefinitionId", Model.ProcessDefinition.Id)
+        @Html.Hidden("taskDefitionId", Model.Task.TaskDefinitionKey)
+        @Html.Hidden("taskId", Model.Task.Id)
+
+        @foreach (var item in Model.Form.FormProperties) {
+            <div class="form-group">
+                @FormsHelper.EncodeForm(item)
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <a href="/Flow/ProcessDefinitions" class="btn btn-default btn-sm">戻る</a>
+                <button type="submit" class="btn btn-primary btn-sm">承認</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

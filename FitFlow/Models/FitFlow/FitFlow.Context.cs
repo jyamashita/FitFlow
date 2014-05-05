@@ -26,12 +26,15 @@ namespace FitFlow.Models.FitFlow
         }
     
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Belongs> Belongs { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
         public virtual DbSet<Menus> Menus { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<CompletedProcess> CompletedProcess { get; set; }
         public virtual DbSet<GroupLeaderView> GroupLeaderView { get; set; }
         public virtual DbSet<GroupView> GroupView { get; set; }
+        public virtual DbSet<TaskView> TaskView { get; set; }
         public virtual DbSet<UserView> UserView { get; set; }
-        public virtual DbSet<Belongs> Belongs { get; set; }
+        public virtual DbSet<UnCompletedProcess> UnCompletedProcess { get; set; }
     }
 }

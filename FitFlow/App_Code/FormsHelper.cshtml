@@ -28,8 +28,15 @@
 
 @helper EncodeTextBox(FormProperty prop)
 {
-    <label for="exampleInputEmail1" class="col-md-2 control-label">@(prop.Name)(@prop.Id)</label>
+    <label for="@prop.Id" class="col-md-2 control-label">@(prop.Name)(@prop.Id)</label>
+
     <div class="col-md-10">
-        <input type="text" class="form-control" id="@prop.Id" name="@prop.Id" />
+        @if (prop.Writable) {
+            <input type="text" class="form-control input-sm" id="@prop.Id" name="@prop.Id" />
+        }
+        else {
+            <input type="text" class="form-control input-sm" id="@prop.Id" name="@prop.Id" value="@prop.Value" readonly />
+        }
     </div>
+
 }

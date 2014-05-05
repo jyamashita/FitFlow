@@ -1,4 +1,5 @@
 ﻿using ActivitiClient.RestClients;
+using FitFlow.Areas.Flow.Models.Views;
 using FitFlow.Controllers;
 using System;
 using System.Collections.Generic;
@@ -19,18 +20,28 @@ namespace FitFlow.Areas.Flow.Controllers
 
         //
         // GET: /Flow/Forms/Start
+        [HttpGet]
         public ActionResult Start(string key, int version, string processId)
         {
-            var client = new ActivitiRestClient("http://localhost:8080/activiti-rest/service", "kermit", "kermit");
-            var model = client.ProcessDefinitions.GetResourcedata(string.Format("{0}:{1}:{2}", key, version, processId));
+            var model = base.Client.ProcessDefinitions.GetResourcedata(string.Format("{0}:{1}:{2}", key, version, processId));
             return View(model);
         }
 
         //
-        // GET: /Flow/Forms/Update
-        public ActionResult Update()
+        // GET: /Flow/Forms/Approve
+        [HttpGet]
+        public ActionResult Approve(int taskId)
         {
-            return View();
+            var form = base.Client.Forms.Get(taskId);
+            var task = base.Client.Tasks.Get(taskId);
+            var def = base.Client.ProcessDefinitions.Get(task.ProcessDefinitionId);
+
+            var formModel = new FormModel {
+                Form = form,
+                Task = task,
+                ProcessDefinition = def
+            };
+            return View(formModel);
         }
 	}
 }

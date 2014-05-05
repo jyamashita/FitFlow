@@ -244,7 +244,7 @@ $(document).ready(function () {
         $.searchDialog({
             title: title,
             url: url,
-            hidden: [],
+            hidden: [0],
             defaultValue: '',
         }, function (data) {
             $val.val(data[0]);

@@ -27,17 +27,23 @@ namespace FitFlow.Controllers
         {
             base.OnActionExecuting(aec);
 
-            if (this.Client == null) {
+            if (this.LoginUser == null) {
                 FormsAuthentication.SignOut();
                 Session.Clear();
+                aec.Result = RedirectToAction("Login", "Account", new { Area = string.Empty });
+                return;
             }
             else {
+                this.Client = new ActivitiRestClient(Settings.Default.ActivitiRestUrl,
+                    this.LoginUser.Id, this.LoginUser.ActivitiPassword);
+
                 this.Dbc = new FitFlowEntities();
                 this.Dbc.Database.Log = (mess) => { };
                 this.Dbc.Configuration.AutoDetectChangesEnabled = false;
 
-                this.Client = new ActivitiRestClient(Settings.Default.ActivitiRestUrl,
-                    this.LoginUser.Id, this.LoginUser.ActivitiPassword);
+                this.ADbc = new ActivitiEntities();
+                this.ADbc.Database.Log = (mess) => { };
+                this.ADbc.Configuration.AutoDetectChangesEnabled = false;
             }
         }
 

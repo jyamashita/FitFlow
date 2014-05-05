@@ -1,0 +1,36 @@
+﻿@model List<FitFlow.Areas.Flow.Models.Views.MyTaskModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>
+    <span class="glyphicon glyphicon-check"></span>
+    マイタスク一覧
+</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>申請番号</th>
+            <th>プロセス名</th>
+            <th>割当日時</th>
+            <td>コメント</td>
+            <th>実行</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.ProcessInstanceId</td>
+                <td>@item.ProcessName</td>
+                <td>@item.AssignDateTime</td>
+                <td>@item.Description</td>
+                @{
+                    var url = Url.Action("Approve", "Forms", new { area = "Flow", taskId = item.TaskId });
+                }
+                <td><a href="@url" class="btn btn-info btn-sm">@item.TaskName</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

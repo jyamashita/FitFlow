@@ -1,0 +1,33 @@
+﻿@model List<FitFlow.Models.FitFlow.UnCompletedProcess>
+@{
+    ViewBag.Title = "Mine";
+}
+
+<h3>
+    <span class="glyphicon glyphicon-new-window"></span>
+    申請済一覧
+</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>申請番号</th>
+            <th>プロセスキー</th>
+            <th>カテゴリ</th>
+            <th>プロセス名</th>
+            <th>割当ユーザ</th>
+            <th>開始</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.ProcessInstanceId</td>
+                <td>@item.ProcessKey</td>
+                <td>@item.Category</td>
+                <td>@item.ProcessName</td>
+                <td></td>
+                <td><a href="#" class="btn btn-info btn-sm">閲覧</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

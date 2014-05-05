@@ -1,4 +1,5 @@
 ﻿using FitFlow.Models;
+using FitFlow.Models.FitFlow;
 using FitFlow.Models.Service;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,13 @@ namespace FitFlow.Controllers
         [HttpPost]
         public ActionResult Login(LoginFormsModel model, string returnUrl)
         {
-            using (var dbc = new FitFlowContext()) {
-                var user = dbc.Users.First(u => u.Id == model.Id && u.Password == model.Password);
+            using (var dbc = new FitFlowEntities()) {
+                var user = dbc.UserView.First(u => u.Id == model.Id && u.Password == model.Password);
                 if (user != null) {
                     // ユーザー認証 成功
                     FormsAuthentication.SetAuthCookie(model.Id, true);
                     Session["LoginUser"] = user;
-                    return this.Redirect(returnUrl);
+                    return this.Redirect(returnUrl ?? "/");
                 }
                 else {
                     // ユーザー認証 失敗

@@ -1,11 +1,12 @@
-﻿@model List<ActivitiClient.Models.ProcessDefinition>
+﻿@model List<FitFlow.Models.Activiti.ACT_RE_PROCDEF>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<h4><span class="glyphicon glyphicon-th-list"></span> 検索結果</h4>
+<h3>
+    <span class="glyphicon glyphicon-file"></span>
+    プロセス一覧
+</h3>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -19,14 +20,14 @@
     <tbody>
         @foreach (var item in Model) {
         <tr>
-            <td>@item.Id</td>
-            <td>@item.Key</td>
-            <td>@item.Category</td>
-            <td>@item.Name</td>
+            <td>@item.ID_</td>
+            <td>@item.KEY_</td>
+            <td>@item.CATEGORY_</td>
+            <td>@item.NAME_</td>
             @{
-                var url = Url.Action("Start", "Forms", new { area = "Flow", key= item.Key, version = item.Version, processId = item.ProcessId });
+                var url = Url.Action("Start", "Forms", new { area = "Flow", key= item.KEY_, version = item.VERSION_, processId = item.ProcessId() });
             }
-            <td><a href="@url" class="btn btn-primary">申請</a></td>
+            <td><a href="@url" class="btn btn-info btn-sm">申請</a></td>
         </tr>
         }
     </tbody>

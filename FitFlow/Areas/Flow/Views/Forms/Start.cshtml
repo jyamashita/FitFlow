@@ -3,17 +3,31 @@
     ViewBag.Title = "Start";
 }
 
-<h2>@Model.Name</h2>
+<h3>
+    <span class="glyphicon glyphicon-file"></span>
+    @Model.StartEvent[0].Name
+</h3>
 
-<form role="form" class="form-horizontal" action="/Tasks/Action" method="post" >
-    @Html.Hidden("processDefinitionId", string.Format("{0}:{1}:{2}", Request.Params["key"], Request.Params["version"], Request.Params["processId"]))
-    @Html.Hidden("taskDefitionId", Model.StartEvent[0].Id)
-    
-    @foreach (var item in Model.StartEvent[0].FormProperty) {
+<form role="form" class="form-horizontal well" action="/Tasks/Start" method="post">
+    <fieldset>
+        <legend>
+            <span class="glyphicon glyphicon-pencil"></span>
+            @Model.Name
+        </legend>
+        @Html.Hidden("processDefinitionId", string.Format("{0}:{1}:{2}", Request.Params["key"], Request.Params["version"], Request.Params["processId"]))
+        @Html.Hidden("taskDefitionId", Model.StartEvent[0].Id)
+
+        @foreach (var item in Model.StartEvent[0].FormProperty) {
+            <div class="form-group">
+                @FormsHelper.EncodeForm(item)
+            </div>
+        }
         <div class="form-group">
-            @FormsHelper.EncodeForm(item)
+            <div class="col-md-10 col-md-offset-2">
+                <a href="/Flow/ProcessDefinitions" class="btn btn-default btn-sm">戻る</a>
+                <button type="submit" class="btn btn-primary btn-sm">申請</button>
+            </div>
         </div>
-    }
-    <button type="submit" class="btn btn-default">申請</button>
+    </fieldset>
 </form>
 

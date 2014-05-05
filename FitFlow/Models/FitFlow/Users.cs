@@ -16,13 +16,13 @@ namespace FitFlow.Models.FitFlow
     {
         public Users()
         {
+            this.Belongs = new HashSet<Belongs>();
+            this.Belongs1 = new HashSet<Belongs>();
+            this.Belongs2 = new HashSet<Belongs>();
             this.Departments = new HashSet<Departments>();
             this.Departments1 = new HashSet<Departments>();
             this.Menus = new HashSet<Menus>();
             this.Menus1 = new HashSet<Menus>();
-            this.Belongs = new HashSet<Belongs>();
-            this.Belongs1 = new HashSet<Belongs>();
-            this.Belongs2 = new HashSet<Belongs>();
         }
     
         public string Id { get; set; }
@@ -33,12 +33,12 @@ namespace FitFlow.Models.FitFlow
         public Nullable<System.DateTime> UpdateDateTime { get; set; }
         public Constants.DeleteFlg DeleteFlg { get; set; }
     
+        public virtual ICollection<Belongs> Belongs { get; set; }
+        public virtual ICollection<Belongs> Belongs1 { get; set; }
+        public virtual ICollection<Belongs> Belongs2 { get; set; }
         public virtual ICollection<Departments> Departments { get; set; }
         public virtual ICollection<Departments> Departments1 { get; set; }
         public virtual ICollection<Menus> Menus { get; set; }
         public virtual ICollection<Menus> Menus1 { get; set; }
-        public virtual ICollection<Belongs> Belongs { get; set; }
-        public virtual ICollection<Belongs> Belongs1 { get; set; }
-        public virtual ICollection<Belongs> Belongs2 { get; set; }
     }
 }

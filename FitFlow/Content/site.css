@@ -108,3 +108,16 @@
     margin: 0 auto;
     text-align: center;
 }
+
+/*
+ * メインメニュー   
+ */
+#main-menu .list-group {
+    margin-bottom: 10px;
+}
+
+#main-menu .list-group-item-heading {
+    border-radius: 4px 4px 0 0;
+    margin: 0;
+    background-color: #F5F5F5;
+}

@@ -15,8 +15,15 @@ namespace FitFlow.Areas.Flow.Controllers
         // GET: /Flow/ProcessDefinitions/
         public ActionResult Index()
         {
-            var client = new ActivitiRestClient(Settings.Default.ActivitiRestUrl, "kermit", "kermit");
-            var list = client.ProcessDefinitions.List(latest: true, suspended: false, size: 15);
+            //var list = base.Client.ProcessDefinitions.List(latest: true, suspended: false, size: 15);
+            var list = (from def in ADbc.ACT_RE_PROCDEF
+                         from newdef in ADbc.ACT_RE_PROCDEF.GroupBy(d => d.KEY_)
+                            .Select(g => new { Key = g.Key, Version = g.Max(m => m.VERSION_) })
+                         where    def.KEY_ == newdef.Key
+                               && def.VERSION_ == newdef.Version
+                               && def.SUSPENSION_STATE_ == 1
+                         select def).ToList();
+
             return View(list);
         }
 

@@ -12,24 +12,16 @@ namespace FitFlow.Models.FitFlow
     using System;
     using System.Collections.Generic;
     
-    public partial class Departments
+    public partial class TaskView
     {
-        public Departments()
-        {
-            this.Belongs = new HashSet<Belongs>();
-        }
-    
         public string Id { get; set; }
-        public string ParentId { get; set; }
-        public int Level { get; set; }
-        public string CreateUserId { get; set; }
-        public System.DateTime CreateDateTime { get; set; }
-        public string UpdateUserId { get; set; }
-        public Nullable<System.DateTime> UpdateDateTime { get; set; }
-        public Constants.DeleteFlg DeleteFlg { get; set; }
-    
-        public virtual ICollection<Belongs> Belongs { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
+        public string ProcessInstanceId { get; set; }
+        public string ProcessDefinitionId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Assignee { get; set; }
+        public Nullable<System.DateTime> StartTime { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
+        public string DeleteReason { get; set; }
     }
 }
