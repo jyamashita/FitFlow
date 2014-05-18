@@ -8,28 +8,28 @@
         <fieldset>
             <legend><span class="glyphicon glyphicon-search"></span> 検索条件</legend>
             <div class="form-group">
-                @Html.LabelFor(model => model.SearchDepartmentValue, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SearchDepartment, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     <div class="input-group">
-                        @Html.TextBoxFor(model => model.SearchDepartment, new { @class = "form-control input-sm", @readonly = "readonly" })
-                        @Html.HiddenFor(model => model.SearchDepartmentValue)
+                        @Html.TextBoxFor(model => model.SearchDepartmentDsp, new { @class = "form-control input-sm", @readonly = "readonly" })
+                        @Html.HiddenFor(model => model.SearchDepartment)
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-info btn-sm search-dialog" data-search-title="組織" data-search-url="/Department/List" data-target="#SearchDepartment" data-clear="#SearchName">
                                 <span class="glyphicon glyphicon-search search-dialog"></span>
                             </button>
-                            <button type="button" class="btn btn-default btn-sm clear-input" data-target="#SearchDepartment">
+                            <button type="button" class="btn btn-default btn-sm clear-input" data-target="#SearchDepartment,#SearchName">
                                 <span class="glyphicon glyphicon-refresh"></span>
                             </button>
                         </div>
                     </div>
                 </div>
-                @Html.LabelFor(model => model.SearchNameValue, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SearchName, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     <div class="input-group">
-                        @Html.TextBoxFor(model => model.SearchName, new { @class = "form-control input-sm", @readonly = "readonly" })
-                        @Html.HiddenFor(model => model.SearchNameValue)
+                        @Html.TextBoxFor(model => model.SearchNameDsp, new { @class = "form-control input-sm", @readonly = "readonly" })
+                        @Html.HiddenFor(model => model.SearchName)
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-info btn-sm search-pair-dialog" data-search-title="ユーザ" data-search-url="/User/List" data-target1="#SearchDepartment" data-target2="#SearchName">
+                            <button type="button" class="btn btn-info btn-sm search-pair-dialog" data-search-title="ユーザ" data-search-url="/User/List?departmentRequired=true" data-target1="#SearchDepartment" data-target2="#SearchName">
                                 <span class="glyphicon glyphicon-user"></span>
                             </button>
                             <button type="button" class="btn btn-default btn-sm clear-input" data-target="#SearchName">

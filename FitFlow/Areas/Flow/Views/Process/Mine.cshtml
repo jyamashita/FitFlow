@@ -1,4 +1,4 @@
-﻿@model List<FitFlow.Models.FitFlow.UnCompletedProcess>
+﻿@model List<FitFlow.Areas.Flow.Models.Views.ProcessMineModel>
 @{
     ViewBag.Title = "Mine";
 }
@@ -11,22 +11,39 @@
     <thead>
         <tr>
             <th>申請番号</th>
-            <th>プロセスキー</th>
             <th>カテゴリ</th>
             <th>プロセス名</th>
+            <th>申請日時</th>
+            <th>タスク名</th>
             <th>割当ユーザ</th>
-            <th>開始</th>
+            <th>ダイアグラム</th>
+            <th>閲覧</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model) {
             <tr>
                 <td>@item.ProcessInstanceId</td>
-                <td>@item.ProcessKey</td>
-                <td>@item.Category</td>
+                <td>@item.ProcessCategory</td>
                 <td>@item.ProcessName</td>
-                <td></td>
-                <td><a href="#" class="btn btn-info btn-sm">閲覧</a></td>
+                <td>@item.StartTime.ToString()</td>
+                <td>
+                    @foreach  (var taskinfo in item.TaskInfoList) {
+                        @taskinfo.TaskName<br>
+                    }
+                </td>
+                <td>
+                    @foreach(var taskinfo in item.TaskInfoList) {
+                        @taskinfo.TaskAssigneeName<br>
+                    }
+                </td>
+                <td>
+                    <a href="@(string.Format("{0}/runtime/process-instances/{1}/diagram", Session["ActivitiRestUrl"], item.ProcessInstanceId))" target="_blank">ダイアグラム</a>
+                </td>
+                @{
+                    var url = Url.Action("Detail", "Forms", new { processInstanceId = item.ProcessInstanceId });
+                }
+                <td><a href="@url" class="btn btn-info btn-sm">閲覧</a></td>
             </tr>
         }
     </tbody>

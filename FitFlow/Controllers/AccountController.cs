@@ -24,7 +24,7 @@ namespace FitFlow.Controllers
         public ActionResult Login(LoginFormsModel model, string returnUrl)
         {
             using (var dbc = new FitFlowEntities()) {
-                var user = dbc.UserView.First(u => u.Id == model.Id && u.Password == model.Password);
+                var user = dbc.UserView.FirstOrDefault(u => u.Id == model.Id && u.Password == model.Password);
                 if (user != null) {
                     // ユーザー認証 成功
                     FormsAuthentication.SetAuthCookie(model.Id, true);

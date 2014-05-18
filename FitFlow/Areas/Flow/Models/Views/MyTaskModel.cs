@@ -20,5 +20,7 @@ namespace FitFlow.Areas.Flow.Models.Views
         public DateTime AssignDateTime { get; set; }
 
         public string Description { get; set; }
+
+        public string Initiator { get; set; }
     }
 }

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3><span class="glyphicon glyphicon-upload"></span> デプロイ</h3>
+    @{ var deployment = TempData["Deployment"] as ActivitiClient.Models.Deployment; }
+    @if (deployment != null) {
+    <div class="bs-callout bs-callout-info">
+        <h4>デプロイ完了</h4>
+        <dl>
+            <dt>時刻</dt>
+            <dd>@deployment.DeploymentTime</dd>
+            <dt>ID</dt>
+            <dd>@deployment.Id</dd>
+            <dt>名前</dt>
+            <dd>@deployment.Name</dd>
+        </dl>
+    </div>
+    }
+    @MessageHelper.EncodeMessage(TempData)
+<div class="well well-sm">
+    @using (Html.BeginForm("Run", "Deploy", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" })) {
+        <fieldset>
+            <legend>設定</legend>
+            <div class="form-group">
+                @Html.Label("デプロイファイル", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="file" name="depfile" required />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <button type="button" class="btn btn-primary btn-sm">デプロイ</button>
+                </div>
+            </div>
+        </fieldset>
+    }
+</div>

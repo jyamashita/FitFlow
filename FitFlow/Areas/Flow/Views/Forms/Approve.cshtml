@@ -1,6 +1,6 @@
 ﻿@model FitFlow.Areas.Flow.Models.Views.FormModel
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "Approve";
 }
 
 <h3>
@@ -18,15 +18,17 @@
         @Html.Hidden("taskDefitionId", Model.Task.TaskDefinitionKey)
         @Html.Hidden("taskId", Model.Task.Id)
 
-        @foreach (var item in Model.Form.FormProperties) {
+        @foreach (var formGroup in Model.FormDatas.AsGroupList(f => f.Complement.Nvl(v => v.Style.CalcSize, 2), 2)) {
             <div class="form-group">
-                @FormsHelper.EncodeForm(item)
+                @foreach (var form in formGroup) {
+                    @FormsHelper.EncodeForm(form)
+                }
             </div>
         }
         <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
                 <a href="/Flow/ProcessDefinitions" class="btn btn-default btn-sm">戻る</a>
-                <button type="submit" class="btn btn-primary btn-sm">承認</button>
+                <button type="button" class="btn btn-primary btn-sm">承認</button>
             </div>
         </div>
     </fieldset>

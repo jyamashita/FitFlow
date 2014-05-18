@@ -12,16 +12,18 @@ namespace FitFlow.Models.FitFlow
     using System;
     using System.Collections.Generic;
     
-    public partial class TaskView
+    public partial class Tasks
     {
-        public string Id { get; set; }
-        public string ProcessInstanceId { get; set; }
-        public string ProcessDefinitionId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Assignee { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
-        public Nullable<System.DateTime> EndTime { get; set; }
-        public string DeleteReason { get; set; }
+        public string TaskId { get; set; }
+        public string AssignGroup { get; set; }
+        public string CreateUserId { get; set; }
+        public System.DateTime CreateDateTime { get; set; }
+        public string UpdateUserId { get; set; }
+        public Nullable<System.DateTime> UpdateDateTime { get; set; }
+        public Constants.DeleteFlg DeleteFlg { get; set; }
+    
+        public virtual Departments Departments { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
     }
 }

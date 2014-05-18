@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - InfoFlow</title>
+    <title>@ViewBag.Title - SampleWorkFlow</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("csses", required: false)
@@ -21,8 +22,7 @@
                     <span class="glyphicon glyphicon-chevron-down"></span>
                 </button>
                 <a href="@Url.Action("Index", "Home", new { Area = string.Empty })" class="navbar-brand">
-                    <span class="glyphicon glyphicon-barcode"></span>
-                    InfoFlow
+                    サンプルワークフロー
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="user-menu">

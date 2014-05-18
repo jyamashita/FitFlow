@@ -8,15 +8,15 @@ namespace FitFlow.Areas.Security.Models.Views
 {
     public class AssetManagement
     {
-        public string SearchName { get; set; }
+        public string SearchNameDsp { get; set; }
 
         [Display(Name = "氏名")]
-        public string SearchNameValue { get; set; }
+        public string SearchName { get; set; }
 
-        public string SearchDepartment { get; set; }
+        public string SearchDepartmentDsp { get; set; }
 
         [Display(Name = "所属")]
-        public string SearchDepartmentValue { get; set; }
+        public string SearchDepartment { get; set; }
 
         public int SearchUsertType { get; set; }
 

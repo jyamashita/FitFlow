@@ -27,21 +27,36 @@ namespace FitFlow.Areas.Social.Controllers
 
         //
         // GET: /Social/User/
-        public ActionResult List(string search)
+        public ActionResult List(string search, bool? departmentRequired)
         {
             using (var dbc = new FitFlowEntities()) {
-                var json = new {
-                    data =
-                        (from usr in dbc.UserView
-                         join blg in dbc.Belongs on usr.Id equals blg.UserId
-                         join grp in dbc.GroupView on blg.DepartmentId equals grp.Id
-                         where usr.Name.Contains(search)
-                         select new { usr.Id, usr.Name, DepartmentId = grp.Id, DepartmentName = grp.Name })
-                        .ToArray()
-                        .Select(u => new[] { u.DepartmentId, u.DepartmentName, u.Id, u.Name }),
-                    head = new[] { "DepartmentId", "組織名", "UserId", "氏名" },
-                };
-                return Json(json, JsonRequestBehavior.AllowGet);
+
+                if (departmentRequired.HasValue && departmentRequired.Value) {
+                    var json = new {
+                        data =
+                            (from usr in dbc.UserView
+                             join blg in dbc.Belongs on usr.Id equals blg.UserId
+                             join grp in dbc.GroupView on blg.DepartmentId equals grp.Id
+                             where usr.Name.Contains(search)
+                             select new { usr.Id, usr.Name, DepartmentId = grp.Id, DepartmentName = grp.Name })
+                            .ToArray()
+                            .Select(u => new[] { u.DepartmentId, u.DepartmentName, u.Id, u.Name }),
+                        head = new[] { "DepartmentId", "組織名", "UserId", "氏名" },
+                    };
+                    return Json(json, JsonRequestBehavior.AllowGet);
+                }
+                else {
+                    var json = new {
+                        data =
+                            (from usr in dbc.UserView
+                             where usr.Name.Contains(search)
+                             select new { usr.Id, usr.Name })
+                            .ToArray()
+                            .Select(u => new[] { u.Id, u.Name }),
+                        head = new[] { "UserId", "氏名" },
+                    };
+                    return Json(json, JsonRequestBehavior.AllowGet);
+                }
             }
         }
 	}

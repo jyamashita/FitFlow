@@ -12,11 +12,13 @@ namespace FitFlow.Models.FitFlow
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class UnCompletedTask
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public string ProcessInstanceId { get; set; }
+        public string TaskId { get; set; }
+        public string TaskDefinitionKey { get; set; }
+        public string TaskName { get; set; }
+        public string TaskAssignee { get; set; }
+        public string TaskAssigneeName { get; set; }
     }
 }

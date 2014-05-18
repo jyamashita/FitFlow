@@ -5,31 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FitFlowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Belongs">
           <Key>
             <PropertyRef Name="UserId" />
             <PropertyRef Name="DepartmentId" />
             <PropertyRef Name="StartDate" />
           </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="DepartmentId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DepartmentId" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="Role" Type="int" Nullable="false" />
           <Property Name="Duty" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
-          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
-          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="64" />
           <Property Name="UpdateDateTime" Type="datetime" />
           <Property Name="DeleteFlg" Type="int" Nullable="false" />
         </EntityType>
@@ -37,12 +27,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ParentId" Type="nvarchar(max)" />
+          <Property Name="Id" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="ParentId" Type="nvarchar" MaxLength="64" />
           <Property Name="Level" Type="int" Nullable="false" />
-          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
-          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="64" />
           <Property Name="UpdateDateTime" Type="datetime" />
           <Property Name="DeleteFlg" Type="int" Nullable="false" />
         </EntityType>
@@ -51,14 +41,34 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Category" Type="nvarchar(max)" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="URL" Type="nvarchar(max)" />
-          <Property Name="Icon" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="URL" Type="nvarchar" MaxLength="255" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="255" />
           <Property Name="Order" Type="int" />
-          <Property Name="CreateUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
-          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="64" />
+          <Property Name="UpdateDateTime" Type="datetime" />
+          <Property Name="DeleteFlg" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessComplements">
+          <Key>
+            <PropertyRef Name="ProcessDefinitionId" />
+          </Key>
+          <Property Name="ProcessDefinitionId" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="ProcessKey" Type="nchar" MaxLength="64" Nullable="false" />
+          <Property Name="Resource" Type="xml" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="AssignGroup" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="64" />
           <Property Name="UpdateDateTime" Type="datetime" />
           <Property Name="DeleteFlg" Type="int" Nullable="false" />
         </EntityType>
@@ -66,11 +76,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" />
-          <Property Name="CreateUserId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreateUserId" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="CreateDateTime" Type="datetime" Nullable="false" />
-          <Property Name="UpdateUserId" Type="nvarchar(max)" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="64" />
           <Property Name="UpdateDateTime" Type="datetime" />
           <Property Name="DeleteFlg" Type="int" Nullable="false" />
         </EntityType>
@@ -126,22 +136,6 @@
           <Property Name="DeleteFlg" Type="int" Nullable="false" />
         </EntityType>
         <!--生成中に見つかったエラー:
-警告 6002: テーブル/ビュー 'FitFlow.dbo.TaskView' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
-        <EntityType Name="TaskView">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="ProcessInstanceId" Type="nvarchar" MaxLength="64" />
-          <Property Name="ProcessDefinitionId" Type="nvarchar" MaxLength="64" />
-          <Property Name="Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Description" Type="nvarchar" MaxLength="4000" />
-          <Property Name="Assignee" Type="nvarchar" MaxLength="255" />
-          <Property Name="StartTime" Type="datetime" />
-          <Property Name="EndTime" Type="datetime" />
-          <Property Name="DeleteReason" Type="nvarchar" MaxLength="4000" />
-        </EntityType>
-        <!--生成中に見つかったエラー:
 警告 6002: テーブル/ビュー 'FitFlow.dbo.UnCompletedProcess' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
         <EntityType Name="UnCompletedProcess">
           <Key>
@@ -160,6 +154,20 @@
           <Property Name="EndActionId" Type="nvarchar" MaxLength="255" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" />
+          <Property Name="StartUser" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <!--生成中に見つかったエラー:
+警告 6002: テーブル/ビュー 'FitFlow.dbo.UnCompletedTask' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
+        <EntityType Name="UnCompletedTask">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="ProcessInstanceId" Type="nvarchar" MaxLength="64" />
+          <Property Name="TaskId" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="TaskDefinitionKey" Type="nvarchar" MaxLength="255" />
+          <Property Name="TaskName" Type="nvarchar" MaxLength="255" />
+          <Property Name="TaskAssignee" Type="nvarchar" MaxLength="255" />
+          <Property Name="TaskAssigneeName" Type="nvarchar" MaxLength="511" />
         </EntityType>
         <!--生成中に見つかったエラー:
 警告 6002: テーブル/ビュー 'FitFlow.dbo.UserView' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
@@ -278,11 +286,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_Tasks_dbo_Departments_AssignGroup">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AssignGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tasks_dbo_Users_CreateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tasks_dbo_Users_UpdateUserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="FitFlowModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Belongs" EntityType="Self.Belongs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessComplements" EntityType="Self.ProcessComplements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompletedProcess" EntityType="Self.CompletedProcess" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -320,19 +365,6 @@
     [GroupView].[DeleteFlg] AS [DeleteFlg]
     FROM [dbo].[GroupView] AS [GroupView]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="TaskView" EntityType="Self.TaskView" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TaskView].[Id] AS [Id], 
-    [TaskView].[ProcessInstanceId] AS [ProcessInstanceId], 
-    [TaskView].[ProcessDefinitionId] AS [ProcessDefinitionId], 
-    [TaskView].[Name] AS [Name], 
-    [TaskView].[Description] AS [Description], 
-    [TaskView].[Assignee] AS [Assignee], 
-    [TaskView].[StartTime] AS [StartTime], 
-    [TaskView].[EndTime] AS [EndTime], 
-    [TaskView].[DeleteReason] AS [DeleteReason]
-    FROM [dbo].[TaskView] AS [TaskView]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="UnCompletedProcess" EntityType="Self.UnCompletedProcess" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [UnCompletedProcess].[ProcessInstanceId] AS [ProcessInstanceId], 
@@ -344,8 +376,19 @@
     [UnCompletedProcess].[StartActionId] AS [StartActionId], 
     [UnCompletedProcess].[EndActionId] AS [EndActionId], 
     [UnCompletedProcess].[StartTime] AS [StartTime], 
-    [UnCompletedProcess].[EndTime] AS [EndTime]
+    [UnCompletedProcess].[EndTime] AS [EndTime], 
+    [UnCompletedProcess].[StartUser] AS [StartUser]
     FROM [dbo].[UnCompletedProcess] AS [UnCompletedProcess]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UnCompletedTask" EntityType="Self.UnCompletedTask" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UnCompletedTask].[ProcessInstanceId] AS [ProcessInstanceId], 
+    [UnCompletedTask].[TaskId] AS [TaskId], 
+    [UnCompletedTask].[TaskDefinitionKey] AS [TaskDefinitionKey], 
+    [UnCompletedTask].[TaskName] AS [TaskName], 
+    [UnCompletedTask].[TaskAssignee] AS [TaskAssignee], 
+    [UnCompletedTask].[TaskAssigneeName] AS [TaskAssigneeName]
+    FROM [dbo].[UnCompletedTask] AS [UnCompletedTask]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UserView" EntityType="Self.UserView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -394,36 +437,38 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Menus" EntitySet="Menus" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tasks_dbo_Departments_AssignGroup" Association="Self.FK_dbo_Tasks_dbo_Departments_AssignGroup">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tasks_dbo_Users_CreateUserId" Association="Self.FK_dbo_Tasks_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tasks_dbo_Users_UpdateUserId" Association="Self.FK_dbo_Tasks_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FitFlowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Belongs">
           <Key>
             <PropertyRef Name="UserId" />
             <PropertyRef Name="DepartmentId" />
             <PropertyRef Name="StartDate" />
           </Key>
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DepartmentId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="FitFlowModel.Role" Nullable="false" />
           <Property Name="Duty" Type="FitFlowModel.Duty" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CreateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
           <NavigationProperty Name="Departments" Relationship="Self.FK_dbo_Belongs_dbo_Departments_DepartmentId" FromRole="Belongs" ToRole="Departments" />
@@ -435,31 +480,32 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ParentId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="Level" Type="Int32" Nullable="false" />
-          <Property Name="CreateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
           <NavigationProperty Name="Belongs" Relationship="Self.FK_dbo_Belongs_dbo_Departments_DepartmentId" FromRole="Departments" ToRole="Belongs" />
           <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Departments_dbo_Users_CreateUserId" FromRole="Departments" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="Self.FK_dbo_Departments_dbo_Users_UpdateUserId" FromRole="Departments" ToRole="Users" />
+          <NavigationProperty Name="Tasks" Relationship="FitFlowModel.FK_dbo_Tasks_dbo_Departments_AssignGroup" FromRole="Departments" ToRole="Tasks" />
         </EntityType>
         <EntityType Name="Menus">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Order" Type="Int32" />
-          <Property Name="CreateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Menus_dbo_Users_CreateUserId" FromRole="Menus" ToRole="Users" />
@@ -469,11 +515,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreateUserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdateUserId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
           <NavigationProperty Name="Belongs" Relationship="Self.FK_dbo_Belongs_dbo_Users_CreateUserId" FromRole="Users" ToRole="Belongs" />
@@ -483,6 +529,8 @@
           <NavigationProperty Name="Departments1" Relationship="Self.FK_dbo_Departments_dbo_Users_UpdateUserId" FromRole="Users" ToRole="Departments" />
           <NavigationProperty Name="Menus" Relationship="Self.FK_dbo_Menus_dbo_Users_CreateUserId" FromRole="Users" ToRole="Menus" />
           <NavigationProperty Name="Menus1" Relationship="Self.FK_dbo_Menus_dbo_Users_UpdateUserId" FromRole="Users" ToRole="Menus" />
+          <NavigationProperty Name="Tasks" Relationship="FitFlowModel.FK_dbo_Tasks_dbo_Users_CreateUserId" FromRole="Users" ToRole="Tasks" />
+          <NavigationProperty Name="Tasks1" Relationship="FitFlowModel.FK_dbo_Tasks_dbo_Users_UpdateUserId" FromRole="Users" ToRole="Tasks" />
         </EntityType>
         <EntityType Name="CompletedProcess">
           <Key>
@@ -528,20 +576,6 @@
           <Property Name="UpdateUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TaskView">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProcessInstanceId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="ProcessDefinitionId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="Assignee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="StartTime" Type="DateTime" Precision="3" />
-          <Property Name="EndTime" Type="DateTime" Precision="3" />
-          <Property Name="DeleteReason" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserView">
           <Key>
@@ -659,7 +693,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FitFlowEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Belongs" EntityType="Self.Belongs" />
           <EntitySet Name="Departments" EntityType="Self.Departments" />
           <EntitySet Name="Menus" EntityType="Self.Menus" />
@@ -667,7 +700,6 @@
           <EntitySet Name="CompletedProcess" EntityType="Self.CompletedProcess" />
           <EntitySet Name="GroupLeaderView" EntityType="Self.GroupLeaderView" />
           <EntitySet Name="GroupView" EntityType="Self.GroupView" />
-          <EntitySet Name="TaskView" EntityType="Self.TaskView" />
           <EntitySet Name="UserView" EntityType="Self.UserView" />
           <AssociationSet Name="FK_dbo_Belongs_dbo_Departments_DepartmentId" Association="Self.FK_dbo_Belongs_dbo_Departments_DepartmentId">
             <End Role="Departments" EntitySet="Departments" />
@@ -701,11 +733,88 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Menus" EntitySet="Menus" />
           </AssociationSet>
+          <EntitySet Name="Tasks" EntityType="FitFlowModel.Tasks" />
+          <AssociationSet Name="FK_dbo_Tasks_dbo_Departments_AssignGroup" Association="FitFlowModel.FK_dbo_Tasks_dbo_Departments_AssignGroup">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tasks_dbo_Users_CreateUserId" Association="FitFlowModel.FK_dbo_Tasks_dbo_Users_CreateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tasks_dbo_Users_UpdateUserId" Association="FitFlowModel.FK_dbo_Tasks_dbo_Users_UpdateUserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <EntitySet Name="UnCompletedTask" EntityType="FitFlowModel.UnCompletedTask" />
           <EntitySet Name="UnCompletedProcess" EntityType="FitFlowModel.UnCompletedProcess" />
+          <EntitySet Name="ProcessComplements" EntityType="FitFlowModel.ProcessComplements" />
         </EntityContainer>
         <EnumType Name="DeleteFlg" IsFlags="true" a:ExternalTypeName="Constants.DeleteFlg" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="Role" a:ExternalTypeName="Constants.Role" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="Duty" a:ExternalTypeName="Constants.Duty" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="AssignGroup" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUserId" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeleteFlg" Type="FitFlowModel.DeleteFlg" Nullable="false" />
+          <NavigationProperty Name="Departments" Relationship="FitFlowModel.FK_dbo_Tasks_dbo_Departments_AssignGroup" FromRole="Tasks" ToRole="Departments" />
+          <NavigationProperty Name="Users" Relationship="FitFlowModel.FK_dbo_Tasks_dbo_Users_CreateUserId" FromRole="Tasks" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="FitFlowModel.FK_dbo_Tasks_dbo_Users_UpdateUserId" FromRole="Tasks" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_dbo_Tasks_dbo_Departments_AssignGroup">
+          <End Type="FitFlowModel.Departments" Role="Departments" Multiplicity="0..1" />
+          <End Type="FitFlowModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="AssignGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tasks_dbo_Users_CreateUserId">
+          <End Type="FitFlowModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="FitFlowModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="CreateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tasks_dbo_Users_UpdateUserId">
+          <End Type="FitFlowModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="FitFlowModel.Tasks" Role="Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UnCompletedTask">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="ProcessInstanceId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TaskId" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TaskDefinitionKey" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TaskName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TaskAssignee" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TaskAssigneeName" Type="String" MaxLength="511" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="UnCompletedProcess">
           <Key>
             <PropertyRef Name="ProcessInstanceId" />
@@ -723,6 +832,15 @@
           <Property Name="EndActionId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="StartUser" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProcessComplements">
+          <Key>
+            <PropertyRef Name="ProcessDefinitionId" />
+          </Key>
+          <Property Name="ProcessDefinitionId" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="ProcessKey" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="true" />
+          <Property Name="Resource" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -730,16 +848,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FitFlowModelStoreContainer" CdmEntityContainer="FitFlowEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="FitFlowModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Belongs">
             <EntityTypeMapping TypeName="FitFlowModel.Belongs">
               <MappingFragment StoreEntitySet="Belongs">
@@ -843,21 +951,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TaskView">
-            <EntityTypeMapping TypeName="FitFlowModel.TaskView">
-              <MappingFragment StoreEntitySet="TaskView">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProcessInstanceId" ColumnName="ProcessInstanceId" />
-                <ScalarProperty Name="ProcessDefinitionId" ColumnName="ProcessDefinitionId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Assignee" ColumnName="Assignee" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="DeleteReason" ColumnName="DeleteReason" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserView">
             <EntityTypeMapping TypeName="FitFlowModel.UserView">
               <MappingFragment StoreEntitySet="UserView">
@@ -875,9 +968,35 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="FitFlowModel.Tasks">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="DeleteFlg" ColumnName="DeleteFlg" />
+                <ScalarProperty Name="UpdateDateTime" ColumnName="UpdateDateTime" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="AssignGroup" ColumnName="AssignGroup" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnCompletedTask">
+            <EntityTypeMapping TypeName="FitFlowModel.UnCompletedTask">
+              <MappingFragment StoreEntitySet="UnCompletedTask">
+                <ScalarProperty Name="TaskAssigneeName" ColumnName="TaskAssigneeName" />
+                <ScalarProperty Name="TaskAssignee" ColumnName="TaskAssignee" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaskDefinitionKey" ColumnName="TaskDefinitionKey" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="ProcessInstanceId" ColumnName="ProcessInstanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UnCompletedProcess">
             <EntityTypeMapping TypeName="FitFlowModel.UnCompletedProcess">
               <MappingFragment StoreEntitySet="UnCompletedProcess">
+                <ScalarProperty Name="StartUser" ColumnName="StartUser" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="EndActionId" ColumnName="EndActionId" />
@@ -888,6 +1007,15 @@
                 <ScalarProperty Name="ProcessDefnitionId" ColumnName="ProcessDefnitionId" />
                 <ScalarProperty Name="ProcessKey" ColumnName="ProcessKey" />
                 <ScalarProperty Name="ProcessInstanceId" ColumnName="ProcessInstanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessComplements">
+            <EntityTypeMapping TypeName="FitFlowModel.ProcessComplements">
+              <MappingFragment StoreEntitySet="ProcessComplements">
+                <ScalarProperty Name="Resource" ColumnName="Resource" />
+                <ScalarProperty Name="ProcessKey" ColumnName="ProcessKey" />
+                <ScalarProperty Name="ProcessDefinitionId" ColumnName="ProcessDefinitionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -24,5 +24,6 @@ namespace FitFlow.Models.FitFlow
         public string EndActionId { get; set; }
         public System.DateTime StartTime { get; set; }
         public Nullable<System.DateTime> EndTime { get; set; }
+        public string StartUser { get; set; }
     }
 }

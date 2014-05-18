@@ -1,16 +1,11 @@
-﻿using ActivitiClient.RestClients;
-using ActivitiClient.Extensions;
-using FitFlow.Properties;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using FitFlow.Controllers;
-using FitFlow.Constants;
+﻿using ActivitiClient.Extensions;
+using ActivitiClient.RestClients;
 using FitFlow.Areas.Flow.Models.Views;
-using System.Data.Entity.SqlServer;
+using FitFlow.Constants;
+using FitFlow.Controllers;
+using FitFlow.Extensions;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace FitFlow.Areas.Flow.Controllers
 {
@@ -20,16 +15,21 @@ namespace FitFlow.Areas.Flow.Controllers
         // GET: /Flow/Tasks/
         public ActionResult Index()
         {
-            var taks = base.ADbc.ACT_RU_TASK.Where(t => t.ASSIGNEE_ == LoginUser.Id)
-                .Join(base.ADbc.ACT_RE_PROCDEF, t => t.PROC_DEF_ID_, d => d.ID_, (task, def) => new { task, def })
-                .Select(set => new {
-                    ProcessInstanceId = set.task.PROC_INST_ID_,
-                    ProcessName = set.def.NAME_,
-                    Assignee = set.task.ASSIGNEE_,
-                    Description = set.task.DELEGATION_,
-                    AssignDateTime = set.task.CREATE_TIME_.Value,
-                    TaskId = set.task.ID_,
-                    TaskName = set.task.NAME_,
+            var taks = (
+                from task in base.ADbc.ACT_RU_TASK.Where(t => t.ASSIGNEE_ == LoginUser.Id)
+                join def in base.ADbc.ACT_RE_PROCDEF on task.PROC_DEF_ID_ equals def.ID_
+                join ins in base.ADbc.ACT_HI_PROCINST on task.PROC_INST_ID_ equals ins.ID_
+                join usr in base.ADbc.ACT_ID_USER on ins.START_USER_ID_ equals usr.ID_
+                select new {
+                    ProcessInstanceId = task.PROC_INST_ID_,
+                    ProcessName = def.NAME_,
+                    Assignee = task.ASSIGNEE_,
+                    Description = task.DELEGATION_,
+                    AssignDateTime = task.CREATE_TIME_.Value,
+                    TaskId = task.ID_,
+                    TaskName = task.NAME_,
+                    InitiatorLastName = usr.LAST_,
+                    InitiatorFirstName = usr.FIRST_
                 }).ToList()
                 .Select(task => new MyTaskModel{
                     ProcessInstanceId = int.Parse(task.ProcessInstanceId),
@@ -38,7 +38,8 @@ namespace FitFlow.Areas.Flow.Controllers
                     Assignee = task.Assignee,
                     Description = task.Description,
                     AssignDateTime = task.AssignDateTime,
-                    TaskId = int.Parse(task.TaskId)
+                    TaskId = int.Parse(task.TaskId),
+                    Initiator = string.Format("{0}　{1}", task.InitiatorLastName, task.InitiatorFirstName)
                 }).ToList();
 
             return View(taks);
@@ -62,9 +63,9 @@ namespace FitFlow.Areas.Flow.Controllers
             var groupLeaderView = base.Dbc.GroupLeaderView.First(b => b.Id == executeDepartment.Id);
 
             // 毎回作成
-            var taskDefitionId = form.Get("taskDefitionId");
-            variables.Add(string.Format("system_{0}_parentGroupLeader", taskDefitionId), groupLeaderView.UserId);
-            variables.Add(string.Format("system_{0}_groupLeader", taskDefitionId), groupLeaderView.ParentUserId);
+            var taskDefitionId = form.Get("taskDefitionId").Replace(":", string.Empty);
+            variables.Add(string.Format("system_{0}_parentGroupLeader", taskDefitionId), groupLeaderView.ParentUserId);
+            variables.Add(string.Format("system_{0}_groupLeader", taskDefitionId), groupLeaderView.UserId);
 
             // 申請時のみ
             variables.Add("system_rootGroupLeader", rootGroupLeader.UserId);
@@ -90,14 +91,13 @@ namespace FitFlow.Areas.Flow.Controllers
             var variables = process.Extract(form);
 
             // タスク実行時、システム固定付随情報設定
-            var rootGroupLeader = base.Dbc.GroupLeaderView.First(g => g.ParentId == null);
-            var executeDepartment = base.Dbc.Belongs.First(g => g.UserId == LoginUser.Id && g.Duty == Duty.Main).Departments;
-            var groupLeaderView = base.Dbc.GroupLeaderView.First(b => b.Id == executeDepartment.Id);
+            var executeBelong = base.Dbc.Belongs.Must(g => g.UserId == LoginUser.Id && g.Duty == Duty.Main);
+            var groupLeaderView = base.Dbc.GroupLeaderView.FirstOrDefault(b => b.Id == executeBelong.DepartmentId);
 
             // 毎回作成
-            var taskDefitionId = form.Get("taskDefitionId");
-            variables.Add(string.Format("system_{0}_parentGroupLeader", taskDefitionId), groupLeaderView.UserId);
-            variables.Add(string.Format("system_{0}_groupLeader", taskDefitionId), groupLeaderView.ParentUserId);
+            var taskDefitionId = form.Get("taskDefitionId").Replace(":", string.Empty);
+            variables.Add(string.Format("system_{0}_parentGroupLeader", taskDefitionId), groupLeaderView.Nvl(v => v.ParentUserId));
+            variables.Add(string.Format("system_{0}_groupLeader", taskDefitionId), groupLeaderView.Nvl(v => v.UserId));
 
             // プロセス開始
             var taskId = form.Get("taskId");

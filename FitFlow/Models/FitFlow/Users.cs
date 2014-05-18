@@ -23,6 +23,8 @@ namespace FitFlow.Models.FitFlow
             this.Departments1 = new HashSet<Departments>();
             this.Menus = new HashSet<Menus>();
             this.Menus1 = new HashSet<Menus>();
+            this.Tasks = new HashSet<Tasks>();
+            this.Tasks1 = new HashSet<Tasks>();
         }
     
         public string Id { get; set; }
@@ -40,5 +42,7 @@ namespace FitFlow.Models.FitFlow
         public virtual ICollection<Departments> Departments1 { get; set; }
         public virtual ICollection<Menus> Menus { get; set; }
         public virtual ICollection<Menus> Menus1 { get; set; }
+        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Tasks> Tasks1 { get; set; }
     }
 }

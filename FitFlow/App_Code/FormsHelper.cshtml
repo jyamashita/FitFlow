@@ -1,42 +1,151 @@
-﻿@using ActivitiClient.Models.Bpmn;
+﻿@using System.Web.Mvc.Html;
+@using ActivitiClient.Models.Bpmn;
+@using FitFlow.Views.Helpers;
+@using FitFlow.Areas.Flow.Models.Views;
+@using FitFlow.Extensions;
 
-@helper EncodeForm(FormProperty prop)
+@helper EncodeForm(FormData form)
 {
-    switch (prop.Type) {
+    switch (form.FormProperty.Type) {
         case "string":
-            @FormsHelper.EncodeTextBox(prop);
+            @FormsHelper.EncodeTextBox(form);
             break;
         case "long":
-            @FormsHelper.EncodeTextBox(prop);
+            @FormsHelper.EncodeLongTextBox(form);
             break;
         case "boolean":
-            @FormsHelper.EncodeTextBox(prop);
+            @FormsHelper.EncodeBooleanCheckBox(form);
             break;
         case "date":
-            @FormsHelper.EncodeTextBox(prop);
+            @FormsHelper.EncodeDateTextBox(form);
             break;
         case "enum":
-            @FormsHelper.EncodeTextBox(prop);
+            @FormsHelper.EncodeEnumTextBox(form);
             break;
         case "user":
-            @FormsHelper.EncodeTextBox(prop);
+            @FormsHelper.EncodeUserTextBox(form);
             break;
         default:
             break;
     }
 }
 
-@helper EncodeTextBox(FormProperty prop)
+@helper EncodeBooleanCheckBox(FormData form)
 {
-    <label for="@prop.Id" class="col-md-2 control-label">@(prop.Name)(@prop.Id)</label>
+    var prop = form.FormProperty;
+    var required = prop.IsRequired ? "*" : string.Empty;
+    <label for="@prop.Id" class="col-md-2 control-label">
+        <span style="color: #d00000;">@required</span>
+    </label>
 
-    <div class="col-md-10">
-        @if (prop.Writable) {
-            <input type="text" class="form-control input-sm" id="@prop.Id" name="@prop.Id" />
-        }
-        else {
-            <input type="text" class="form-control input-sm" id="@prop.Id" name="@prop.Id" value="@prop.Value" readonly />
-        }
+    var option = !prop.IsWritable ? "disabled" :
+                 prop.IsRequired ? "required" : string.Empty;
+    var check = prop.AsBoolValue() ? "checked" : string.Empty;
+    <div class="@form.Complement.Nvl(v => v.Style.SizeCss, "col-md-10")">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="@prop.Id" name="@prop.Id" @check @option />
+                @prop.Name
+            </label>
+        </div>
+    </div>
+}
+
+@helper EncodeTextBox(FormData form)
+{
+    var prop = form.FormProperty;
+    var required = prop.IsRequired ? "*" : string.Empty;
+    <label for="@prop.Id" class="col-md-2 control-label">
+        @prop.Name
+        <span style="color: #d00000;">@required</span>
+    </label>
+
+    var option = !prop.IsWritable ? "disabled" :
+                 prop.IsRequired ? "required" : string.Empty;
+    <div class="@form.Complement.Nvl(v => v.Style.SizeCss, "col-md-10")">
+        <input type="text" class="form-control input-sm" id="@prop.Id" name="@prop.Id" value="@prop.Value" @option />
+    </div>
+}
+
+@helper EncodeLongTextBox(FormData form)
+{
+    var prop = form.FormProperty;
+    var required = prop.IsRequired ? "*" : string.Empty;
+    <label for="@prop.Id" class="col-md-2 control-label">
+        @prop.Name
+        <span style="color: #d00000;">@required</span>
+    </label>
+
+    var option = !prop.IsWritable ? "disabled" :
+                 prop.IsRequired ? "required" : string.Empty;
+    <div class="@form.Complement.Nvl(v => v.Style.SizeCss, "col-md-10")">
+        <input type="number" class="form-control input-sm" id="@prop.Id" name="@prop.Id" value="@prop.Value" @option />
+    </div>
+}
+
+@helper EncodeDateTextBox(FormData form)
+{
+    var prop = form.FormProperty;
+    var required = prop.IsRequired ? "*" : string.Empty;
+    <label for="@prop.Id" class="col-md-2 control-label">
+        @prop.Name
+        <span style="color: #d00000;">@required</span>
+    </label>
+
+    var option = !prop.IsWritable ? "disabled" :
+                 prop.IsRequired ? "required" : string.Empty;
+    var datePattern = string.IsNullOrEmpty(prop.DatePattern) ? "YYYY/MM/DD" : prop.DatePattern;
+    <div class="@form.Complement.Nvl(v => v.Style.SizeCss, "col-md-10")">
+        <input type="date" class="form-control input-sm datetimepicker" id="@prop.Id" name="@prop.Id" placeholder="@datePattern" value="@prop.Value" @option />
+    </div>
+}
+
+@helper EncodeEnumTextBox(FormData form)
+{
+    var prop = form.FormProperty;
+    var required = prop.IsRequired ? "*" : string.Empty;
+    <label for="@prop.Id" class="col-md-2 control-label">
+        @prop.Name
+        <span style="color: #d00000;">@required</span>
+    </label>
+
+    var option = !prop.IsWritable ? "disabled" :
+                 prop.IsRequired ? "required" : string.Empty;
+    var selected = string.Empty;
+    <div class="@form.Complement.Nvl(v => v.Style.SizeCss, "col-md-10")">
+        <select class="form-control input-sm" @option>
+            @foreach (var opt in prop.EnumValues) {
+                if (prop.Value == opt.Id) { selected = "selected"; }
+                <option value="@opt.Id" @selected>@opt.Name</option>
+            }
+        </select>
+    </div>
+}
+
+@helper EncodeUserTextBox(FormData form)
+{
+    var prop = form.FormProperty;
+    var required = prop.IsRequired ? "*" : string.Empty;
+    <label for="@prop.Id" class="col-md-2 control-label">
+        @prop.Name
+        <span style="color: #d00000;">@required</span>
+    </label>
+    
+    var disabled = !prop.IsWritable ? "disabled" : string.Empty;
+    required = prop.IsRequired ? "required" : string.Empty;
+    <div class="col-md-4">
+        <div class="input-group">
+            @Help.Html.TextBox(string.Format("{0}Dsp", prop.Id), prop.Value, new { @class = "form-control input-sm", @readonly = "readonly", required = required })
+            @Help.Html.Hidden(prop.Id, prop.Value)
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-info btn-sm search-dialog" data-search-title="ユーザ" data-search-url="/User/List" data-target="#@prop.Id" @disabled>
+                    <span class="glyphicon glyphicon-user"></span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm clear-input" data-target="#@prop.Id" @disabled>
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+            </div>
+        </div>
     </div>
 
 }

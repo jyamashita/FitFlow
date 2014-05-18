@@ -17,6 +17,7 @@ namespace FitFlow.Models.FitFlow
         public Departments()
         {
             this.Belongs = new HashSet<Belongs>();
+            this.Tasks = new HashSet<Tasks>();
         }
     
         public string Id { get; set; }
@@ -31,5 +32,6 @@ namespace FitFlow.Models.FitFlow
         public virtual ICollection<Belongs> Belongs { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
+        public virtual ICollection<Tasks> Tasks { get; set; }
     }
 }

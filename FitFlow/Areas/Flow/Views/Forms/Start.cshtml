@@ -1,31 +1,33 @@
-﻿@model ActivitiClient.Models.Bpmn.Process
+﻿@model FitFlow.Areas.Flow.Models.Views.ProcessStartModel
 @{
     ViewBag.Title = "Start";
 }
 
 <h3>
     <span class="glyphicon glyphicon-file"></span>
-    @Model.StartEvent[0].Name
+    @Model.StartTask.Name
 </h3>
 
 <form role="form" class="form-horizontal well" action="/Tasks/Start" method="post">
     <fieldset>
         <legend>
             <span class="glyphicon glyphicon-pencil"></span>
-            @Model.Name
+            @Model.ProcessName
         </legend>
         @Html.Hidden("processDefinitionId", string.Format("{0}:{1}:{2}", Request.Params["key"], Request.Params["version"], Request.Params["processId"]))
-        @Html.Hidden("taskDefitionId", Model.StartEvent[0].Id)
+        @Html.Hidden("taskDefitionId", Model.StartTask.Id)
 
-        @foreach (var item in Model.StartEvent[0].FormProperty) {
+        @foreach (var formGroup in Model.FormDatas.Where(f => f.FormProperty.IsReadable).AsGroupList(f => f.Complement.Nvl(v => v.Style.CalcSize, 2), 2)) {
             <div class="form-group">
-                @FormsHelper.EncodeForm(item)
+                @foreach (var form in formGroup) {
+                    @FormsHelper.EncodeForm(form)
+                }
             </div>
         }
         <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
                 <a href="/Flow/ProcessDefinitions" class="btn btn-default btn-sm">戻る</a>
-                <button type="submit" class="btn btn-primary btn-sm">申請</button>
+                <button type="button" class="btn btn-primary btn-sm">申請</button>
             </div>
         </div>
     </fieldset>

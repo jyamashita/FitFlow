@@ -47,7 +47,13 @@
   }
 }
 
-.modal-body {
+/*
+ * ダイアログ
+ */
+#confirm-dialog .modal-body p, #alert-dialog .modal-body p {
+    white-space: pre;
+}
+#search-dialog .modal-body {
     min-height: 500px;
 }
 .search-data {
@@ -121,3 +127,5 @@
     margin: 0;
     background-color: #F5F5F5;
 }
+
+

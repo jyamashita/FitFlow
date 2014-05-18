@@ -13,5 +13,20 @@ namespace FitFlow.Areas.Flow.Models.Views
         public ActivitiClient.Models.Task Task { get; set; }
 
         public ActivitiClient.Models.ProcessDefinition ProcessDefinition { get; set; }
+
+        public ProcessComplement ProcessComplements { get; set; }
+
+        public List<FormData> FormDatas
+        {
+            get
+            {
+                return (from props in Form.FormProperties
+                        from comple in ProcessComplements.Complements.Where(p => p.Id == props.Id).DefaultIfEmpty()
+                        select new FormData {
+                            FormProperty = props,
+                            Complement = comple
+                        }).ToList();
+            }
+        }
     }
 }

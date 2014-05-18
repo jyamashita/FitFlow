@@ -1,0 +1,14 @@
+﻿@using ActivitiClient.Models.Bpmn;
+@using FitFlow.Views.Helpers;
+@using System.Web.Mvc.Html;
+@using System.Web.Mvc;
+
+@helper EncodeMessage(TempDataDictionary messages) { 
+    var error = messages["ErrorMessage"] as string;
+    if (!string.IsNullOrEmpty(error)) {
+        <div class="bs-callout alert-danger">
+            <h4>エラー</h4>
+            <p>@error</p>
+        </div>
+    }
+}

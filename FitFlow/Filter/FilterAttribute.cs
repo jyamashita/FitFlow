@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace FitFlow.Filter
 {
-    public class vd : ActionFilterAttribute
+    public class NoClientCacheAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -14,7 +14,7 @@ namespace FitFlow.Filter
 
             response.ClearHeaders();
 
-            response.AppendHeader("Cache-Control", "private, no-cache, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0");
+            response.AppendHeader("Cache-Control", "private, no-cache, must-revalidate, max-stale=0, post-check=0, pre-check=0");
             response.AppendHeader("Pragma", "no-cache");
             response.AppendHeader("Expires", "-1");
         }

@@ -20,10 +20,12 @@
         html.push('</div><!-- /.modal -->');
 
         var $confirmDialog = $('#confirm-dialog');
-        if (!$confirmDialog[0])
+        if (!$confirmDialog[0]) {
             $('body').append(html.join('').replace(/\$message/g, message));
-        else
+            $confirmDialog = $('#confirm-dialog');
+        } else {
             $confirmDialog.find('.modal-body p').text(message);
+        }
         $confirmDialog.modal('show');
         $confirmDialog.on('click', '.btn-primary', callback);
     },
@@ -237,10 +239,10 @@ $(document).ready(function () {
         var url = $(this).attr('data-search-url');
         var target = $(this).attr('data-target');
         var clear = $(this).attr('data-clear');
-        var $dsp = $(target);
-        var $val = $(target + 'Value');
-        var $dspClear = $(clear);
-        var $valClear = $(clear + 'Value');
+        var $dsp = $(target + 'Dsp');
+        var $val = $(target);
+        var $dspClear = $(clear + 'Dsp');
+        var $valClear = $(clear);
         $.searchDialog({
             title: title,
             url: url,
@@ -259,10 +261,10 @@ $(document).ready(function () {
         var url = $(this).attr('data-search-url');
         var target1 = $(this).attr('data-target1');
         var target2 = $(this).attr('data-target2');
-        var $dsp1 = $(target1);
-        var $val1 = $(target1 + 'Value');
-        var $dsp2 = $(target2);
-        var $val2 = $(target2 + 'Value');
+        var $dsp1 = $(target1 + 'Dsp');
+        var $val1 = $(target1);
+        var $dsp2 = $(target2 + 'Dsp');
+        var $val2 = $(target2);
         $.searchDialog({
             title: title,
             url: url,
@@ -278,17 +280,37 @@ $(document).ready(function () {
 
     $('.content').on('click', '.clear-input', function () {
         var target = $(this).attr('data-target');
-        $(target).val('');
-        $(target + 'Value').val('');
+
+        var targets = [];
+        if (target.indexOf(',') != -1) {
+            targets = target.split(',');
+        } else {
+            targets.push(target);
+        }
+        $.each(targets, function () {
+            $(this + 'Dsp').val('');
+            $(this).val('');
+        });
     });
     
 
-    $('.content').on('click', '.btn-primary', function () {
-        $.confirmDialog('test');
+    $('.content').on('click', '.btn-primary', function (e) {
+        var $button = $(this);
+        var $form = $button.parents('form');
+        $.confirmDialog($(this).text() + "を実行します。\r\nよろしいですか。", function () {
+            $form.submit();
+        });
     });
 
     if (0 < $(".add-item").length) {
         alert('add');
     }
+
+    $.datepicker.setDefaults($.datepicker.regional["ja"]);
+    $('.datetimepicker').datepicker({
+        format: 'yyyy/mm/dd',
+        language: 'ja',
+        autoclose: 'true'
+    });
 
 });

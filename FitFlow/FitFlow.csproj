@@ -45,6 +45,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,12 +162,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Flow\Controllers\FormsController.cs" />
+    <Compile Include="Areas\Flow\Controllers\DeployController.cs" />
     <Compile Include="Areas\Flow\Controllers\ProcessDefinitionsController.cs" />
     <Compile Include="Areas\Flow\Controllers\ProcessController.cs" />
     <Compile Include="Areas\Flow\Controllers\TasksController.cs" />
     <Compile Include="Areas\Flow\FlowAreaRegistration.cs" />
+    <Compile Include="Areas\Flow\Models\Complement.cs" />
+    <Compile Include="Areas\Flow\Models\ProcessComplement.cs" />
+    <Compile Include="Areas\Flow\Models\Style.cs" />
+    <Compile Include="Areas\Flow\Models\Views\FormData.cs" />
+    <Compile Include="Areas\Flow\Models\Views\ProcessStartModel.cs" />
+    <Compile Include="Areas\Flow\Models\Views\ProcessDetailModel.cs" />
     <Compile Include="Areas\Flow\Models\Views\FormModel.cs" />
     <Compile Include="Areas\Flow\Models\Views\MyTaskModel.cs" />
+    <Compile Include="Areas\Flow\Models\Views\ProcessMineModel.cs" />
     <Compile Include="Areas\Security\Controllers\AssetManagementController.cs" />
     <Compile Include="Areas\Security\Controllers\SecurityAssessmentController.cs" />
     <Compile Include="Areas\Security\Models\Views\AssetManagement.cs" />
@@ -182,7 +191,10 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Extensions\IQueryableExtensions.cs" />
+    <Compile Include="Extensions\DB\FitFlowEntitiesExtention.cs" />
+    <Compile Include="Extensions\DB\ProcessCompletemntsExtention.cs" />
+    <Compile Include="Extensions\GenericExtention.cs" />
+    <Compile Include="Extensions\IQueryableExtension.cs" />
     <Compile Include="Extensions\DB\ACT_RE_PROCDEFExtention.cs" />
     <Compile Include="Filter\FilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,14 +291,12 @@
     <Compile Include="Models\Base\BaseModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Belong.cs" />
+    <Compile Include="Models\Exception\FitFlowException.cs" />
     <Compile Include="Models\FitFlowContext.cs" />
     <Compile Include="Models\FitFlow\Belongs.cs">
       <DependentUpon>FitFlow.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FitFlow\CompletedProcess.cs">
-      <DependentUpon>FitFlow.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FitFlow\C__MigrationHistory.cs">
       <DependentUpon>FitFlow.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FitFlow\Departments.cs">
@@ -316,10 +326,16 @@
     <Compile Include="Models\FitFlow\Menus.cs">
       <DependentUpon>FitFlow.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FitFlow\TaskView.cs">
+    <Compile Include="Models\FitFlow\ProcessComplements.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\Tasks.cs">
       <DependentUpon>FitFlow.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FitFlow\UnCompletedProcess.cs">
+      <DependentUpon>FitFlow.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitFlow\UnCompletedTask.cs">
       <DependentUpon>FitFlow.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FitFlow\Users.cs">
@@ -331,13 +347,31 @@
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Service\LoginModel.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Views\MenuModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Message\Fill.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Fill.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Message\Message.Designer.cs">
+      <DependentUpon>Message.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Message\Message_value.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Message_value.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\FitFlowUtil.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Helpers\Help.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -345,12 +379,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootswatch.min.css" />
+    <Content Include="Content\datepicker3.css" />
+    <Content Include="Content\docs.min.css" />
     <Content Include="Content\signin.css" />
     <Content Include="Content\site-flow.css" />
     <Content Include="Content\site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap-datepicker.ja.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -370,6 +408,9 @@
     <Content Include="Areas\Flow\Views\Process\Mine.cshtml" />
     <Content Include="Areas\Flow\Views\Tasks\Index.cshtml" />
     <Content Include="Areas\Flow\Views\Forms\Approve.cshtml" />
+    <Content Include="Areas\Flow\Views\Forms\Detail.cshtml" />
+    <Content Include="Areas\Flow\Views\Deploy\Index.cshtml" />
+    <Content Include="App_Code\MessageHelper.cshtml" />
     <None Include="Areas\Security\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Security\Views\AssetManagement\Index.cshtml" />
     <Content Include="Areas\Security\Views\SecurityAssessment\Index.cshtml" />
@@ -456,7 +497,6 @@
     <Folder Include="Areas\Social\Models\" />
     <Folder Include="Areas\Social\Views\Shared\" />
     <Folder Include="Areas\Social\Views\User\" />
-    <Folder Include="Models\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -477,6 +517,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201405040149558_Init.resx">
       <DependentUpon>201405040149558_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Message\Fill.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Fill.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Message\Message.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Message.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Message\Message_value.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Message_value.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

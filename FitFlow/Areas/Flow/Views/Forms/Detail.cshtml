@@ -1,0 +1,32 @@
+﻿@model FitFlow.Areas.Flow.Models.Views.ProcessDetailModel
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h3>
+    <span class="glyphicon glyphicon-check"></span>
+    閲覧
+</h3>
+<form role="form" class="form-horizontal well" action="/Tasks/Action" method="post">
+    <fieldset>
+        <legend>
+            <span class="glyphicon glyphicon-pencil"></span>
+            @Model.ProcessDefinition.Name
+        </legend>
+        @Html.Hidden("processDefinitionId", Model.ProcessDefinition.Id)
+        @Html.Hidden("processInstanceId", Model.History.Id)
+
+        @foreach (var formGroup in Model.FormDatas.AsGroupList(f => f.Complement.Nvl(v => v.Style.CalcSize, 2), 2)) {
+            <div class="form-group">
+                @foreach (var form in formGroup) {
+                    @FormsHelper.EncodeForm(form)
+                }
+            </div>
+        }
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <a href="/Flow/Process/Mine" class="btn btn-default btn-sm">戻る</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
