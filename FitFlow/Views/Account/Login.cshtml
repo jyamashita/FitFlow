@@ -15,10 +15,17 @@
 <body>
     <div class="container">
         @using (@Html.BeginForm(null, null, new { returnUrl = Request.Params["returnUrl"] }, FormMethod.Post, new { @class = "form-signin" })) {
-            <h2 class="form-signin-heading">Login</h2>
-            @Html.TextBoxFor(model => model.Id, new { @class = "form-control", placeholder = "UserId", required = "required", autofocus = "autofocus" })
-            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password", required = "required" })
-            <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+            <h3>サンプルワークフロー</h3>
+            <legend>ログイン</legend>
+            <div class="input-group user">
+                <span class="input-group-addon glyphicon glyphicon-user"></span>
+                @Html.TextBoxFor(model => model.Id, new { @class = "form-control", placeholder = "UserId", required = "required", autofocus = "autofocus" })
+            </div>
+            <div class="input-group lock">
+                <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password", required = "required" })
+            </div>
+            <button class="btn btn-lg btn-success btn-block" type="submit">ログイン</button>
         }
     </div> <!-- /container -->
 </body>

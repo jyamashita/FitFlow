@@ -1,7 +1,7 @@
 ﻿@model FitFlow.Models.Views.MenuModel
 <div class="collapse navbar-collapse affix" id="main-menu">
     @foreach (var item in Model.MenuList.Select((v, i) => new { v, i })) {
-        @AsMenuItem(item.v, item.i, Model.MenuList)
+        @AsMenuItem(item.v, item.i, Model)
     }
 </div>
 @helper AsActive(string url)
@@ -10,8 +10,27 @@
     @active
 }
 
-@helper AsMenuItem(FitFlow.Models.FitFlow.Menus menu, int idx, List<FitFlow.Models.FitFlow.Menus> menuList)
+@helper AsBadge(string url, FitFlow.Models.Views.MenuModel model) {
+
+    var cnt = 0;
+    switch (url) {
+        case "/Flow/Tasks":
+            cnt = model.MyTaskCnt;
+            break;
+        case "/Flow/Process/Mine":
+            cnt = model.MyProcessCnt;
+            break;
+        default:
+            break;
+    }
+    if (0 < cnt) {
+        <span class="badge">@cnt</span>
+    }
+}
+
+@helper AsMenuItem(FitFlow.Models.FitFlow.Menus menu, int idx, FitFlow.Models.Views.MenuModel model)
 {
+    var menuList = model.MenuList;
     if (idx == 0 || menu.Category != menuList[idx - 1].Category) {
         @Html.Raw("<div class=\"list-group\" id=\"main-menu\">")
         if (!string.IsNullOrEmpty(menu.Category)) {
@@ -21,6 +40,7 @@
     <a href="@menu.URL" class="list-group-item @AsActive(menu.URL)">
         <span class="@menu.Icon"></span>
         @menu.Name
+        @AsBadge(menu.URL, model)
     </a>
     if (idx == menuList.Count -1 ||
             (idx + 1) < menuList.Count && menu.Category != menuList[idx + 1].Category) {

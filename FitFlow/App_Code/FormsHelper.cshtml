@@ -7,22 +7,22 @@
 @helper EncodeForm(FormData form)
 {
     switch (form.FormProperty.Type) {
-        case "string":
+        case ActivitiClient.Constants.Type.@string:
             @FormsHelper.EncodeTextBox(form);
             break;
-        case "long":
+        case ActivitiClient.Constants.Type.@long:
             @FormsHelper.EncodeLongTextBox(form);
             break;
-        case "boolean":
+        case ActivitiClient.Constants.Type.boolean:
             @FormsHelper.EncodeBooleanCheckBox(form);
             break;
-        case "date":
+        case ActivitiClient.Constants.Type.date:
             @FormsHelper.EncodeDateTextBox(form);
             break;
-        case "enum":
+        case ActivitiClient.Constants.Type.@enum:
             @FormsHelper.EncodeEnumTextBox(form);
             break;
-        case "user":
+        case ActivitiClient.Constants.Type.user:
             @FormsHelper.EncodeUserTextBox(form);
             break;
         default:
@@ -63,7 +63,7 @@
     var option = !prop.IsWritable ? "disabled" :
                  prop.IsRequired ? "required" : string.Empty;
     <div class="@form.Complement.Nvl(v => v.Style.SizeCss, "col-md-10")">
-        <input type="text" class="form-control input-sm" id="@prop.Id" name="@prop.Id" value="@prop.Value" @option />
+        <input type="text" class="form-control input-sm @FormUtil.AsValidStr(form)" id="@prop.Id" name="@prop.Id" value="@prop.Value" @option />
     </div>
 }
 
@@ -79,7 +79,7 @@
     var option = !prop.IsWritable ? "disabled" :
                  prop.IsRequired ? "required" : string.Empty;
     <div class="@form.Complement.Nvl(v => v.Style.SizeCss, "col-md-10")">
-        <input type="number" class="form-control input-sm" id="@prop.Id" name="@prop.Id" value="@prop.Value" @option />
+        <input type="text" class="form-control input-sm @FormUtil.AsValidStr(form)" id="@prop.Id" name="@prop.Id" value="@prop.Value" @option />
     </div>
 }
 
@@ -135,7 +135,7 @@
     required = prop.IsRequired ? "required" : string.Empty;
     <div class="col-md-4">
         <div class="input-group">
-            @Help.Html.TextBox(string.Format("{0}Dsp", prop.Id), prop.Value, new { @class = "form-control input-sm", @readonly = "readonly", required = required })
+            @Help.Html.TextBox(string.Format("{0}Dsp", prop.Id), prop.Value, new { @class = "form-control input-sm " + FormUtil.AsValidStr(form), @readonly = "readonly", required = required })
             @Help.Html.Hidden(prop.Id, prop.Value)
             <div class="input-group-btn">
                 <button type="button" class="btn btn-info btn-sm search-dialog" data-search-title="ユーザ" data-search-url="/User/List" data-target="#@prop.Id" @disabled>

@@ -234,6 +234,11 @@ $.fn.initSelectDataTable = function (option, callback) {
 
 $(document).ready(function () {
 
+    /*
+     *
+     */
+    $('#process-form').validationEngine();
+
     $('.content').on('click', '.search-dialog', function () {
         var title = $(this).attr('data-search-title');
         var url = $(this).attr('data-search-url');
@@ -294,7 +299,13 @@ $(document).ready(function () {
     });
     
 
-    $('.content').on('click', '.btn-primary', function (e) {
+    $('.content').on('click', '.execute-bpm', function (e) {
+
+        var $form = $(this).parents('form');
+        if (!$form.validationEngine('validate')) {
+            return false;
+        }
+
         var $button = $(this);
         var $form = $button.parents('form');
         $.confirmDialog($(this).text() + "を実行します。\r\nよろしいですか。", function () {

@@ -12,7 +12,9 @@ namespace FitFlow
                         "~/Scripts/jquery-2.1.0.min.js",
                         "~/Scripts/jquery-ui-1.10.4.custom.min.js",
                         "~/Scripts/jquery.dataTables.js",
-                        "~/Scripts/jquery.dataTables.customize.js"
+                        "~/Scripts/jquery.dataTables.customize.js",
+                        "~/Scripts/language/jquery.validationEngine-ja.js",
+                        "~/Scripts/jquery.validationEngine.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -36,6 +38,7 @@ namespace FitFlow
                       "~/Content/bootstrap-theme.css",
                       "~/Content/docs.min.css",
                       "~/Content/datepicker3.css",
+                      "~/Content/validationEngine.jquery.css",
                       "~/Content/site.css"));
         }
     }

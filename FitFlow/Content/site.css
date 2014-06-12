@@ -11,9 +11,11 @@
     margin-left: 30px;
     letter-spacing: 0.2em;
   }
-  .navbar-brand span {
-      margin-right: -5px;
-  }
+}
+.navbar-brand{
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    font-weight: 900;
+    font-family: "HGP創英角ｺﾞｼｯｸUB";
 }
 
 /**

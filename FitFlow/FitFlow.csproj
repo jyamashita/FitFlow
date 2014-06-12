@@ -371,6 +371,7 @@
     </Compile>
     <Compile Include="Service\FitFlowUtil.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\Helpers\FormUtil.cs" />
     <Compile Include="Views\Helpers\Help.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +385,7 @@
     <Content Include="Content\signin.css" />
     <Content Include="Content\site-flow.css" />
     <Content Include="Content\site.css" />
+    <Content Include="Content\validationEngine.jquery.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -464,6 +466,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validationEngine.js" />
+    <Content Include="Scripts\language\jquery.validationEngine-ja.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -549,7 +553,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59878</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://vaio:51003/</IISUrl>
+          <IISUrl>http://172.20.10.3:51003/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

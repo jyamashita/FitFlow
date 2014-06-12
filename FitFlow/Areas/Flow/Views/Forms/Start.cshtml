@@ -8,7 +8,7 @@
     @Model.StartTask.Name
 </h3>
 
-<form role="form" class="form-horizontal well" action="/Tasks/Start" method="post">
+<form id="process-form" role="form" class="form-horizontal well" action="/Tasks/Start" method="post">
     <fieldset>
         <legend>
             <span class="glyphicon glyphicon-pencil"></span>
@@ -27,7 +27,7 @@
         <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
                 <a href="/Flow/ProcessDefinitions" class="btn btn-default btn-sm">戻る</a>
-                <button type="button" class="btn btn-primary btn-sm">申請</button>
+                <button type="button" class="btn btn-danger btn-sm execute-bpm">申請</button>
             </div>
         </div>
     </fieldset>
